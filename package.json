@@ -1,0 +1,20 @@
+{
+  "name": "reminder-app",
+  "version": "1.0.0",
+  "description": "a full stack app that enables users to set up reminders using MERN stack",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yolisabam/reminder-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yolisabam/reminder-app/issues"
+  },
+  "homepage": "https://github.com/yolisabam/reminder-app#readme"
+}
