@@ -7,9 +7,10 @@ const About = () =>
       <h1>Twilio Text</h1>
       <h2>ABOUT US</h2>
     </Hero>
+    <p>nsjdkndsjk</p>
 
 
 
   </div>;
 
-
+export default About;
