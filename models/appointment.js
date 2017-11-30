@@ -15,9 +15,14 @@ const appointmentSchema = mongoose.Schema({
     validator: function (v) {
       return /([01]\d|2[0-3]):?[0-5]\d/.test(v);
     },
-    message: '{VALUE} is not a valid time format!'
+    message: '{VALUE} is not a valid time format!',
+    required: [true, 'We need your time input in order to send you notification'],
   },
-  required: [true, 'We need your time input in order to send you notification'],
+
+notification: {
+  type: Number,
+  required: true
+}
 });
 
 module.exports = mongoose.model("Appointment", articleSchema);
