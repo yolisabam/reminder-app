@@ -12,8 +12,7 @@ const Landing = props =>
     <hr></hr>
     <br></br>
     <div className="container">
-      <div className="col-sm-6 col-sm-offset-3">
-        
+      <div className="col-sm-8 col-sm-offset-2">
         <LoginForm />
       </div>
     </div>
