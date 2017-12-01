@@ -8,9 +8,11 @@ const Landing = props =>
         <h1>Twilio Text</h1>
         <h2>ABOUT US</h2>
     </Hero>
+    <br></br>
+    <hr></hr>
+    <br></br>
     <div className="container">
-      <div className="col-sm-6 col-sm-offset-3">
-        
+      <div className="col-sm-8 col-sm-offset-2">
         <LoginForm />
       </div>
     </div>
