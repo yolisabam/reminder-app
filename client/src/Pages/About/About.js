@@ -8,20 +8,20 @@ const About = () =>
         <h1>Twilio Text</h1>
         <h2>ABOUT US</h2>
       </Hero>
-    <div>
+    <div className="container">
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-md-6">
         <div className=".img-rounded">
-          <a href="https://www.google.com"><img img width="400px" height="300px img-rounded"  src="https://ginnodangan.files.wordpress.com/2011/04/gintamaop9-02.jpg" alt="Cinque Terre"></img></a>  
+            <a href="http://yolisa-bam.com/"><img className="img-circle" img width="300px" height="300px"  src="https://ginnodangan.files.wordpress.com/2011/04/gintamaop9-02.jpg" alt="Cinque Terre"></img></a>  
           <div className="caption">
             <p>Yolisa</p>
           </div>
           </div>
          </div> 
 
-      <div className="col-md-4">
+      <div className="col-md-6">
         <div className=".img-rounded">
-          <a href="https://www.google.com"><img img width="400px" height="300px" src="https://ginnodangan.files.wordpress.com/2011/04/gintamaop9-03.jpg" alt="Cinque Terre"></img></a>
+            <a href="http://winfredsunga.com"><img className="img-circle" img width="300px" height="300px" src="https://ginnodangan.files.wordpress.com/2011/04/gintamaop9-03.jpg" alt="Cinque Terre"></img></a>
           <div className="caption">
             <p>Winfred</p>
           </div>
@@ -30,18 +30,18 @@ const About = () =>
     </div> 
 
     <div className="row">
-      <div className="col-md-4">
+      <div className="col-md-6">
         <div className=".img-rounded">
-          <a href="https://www.google.com"><img img width="400px" height="300px" src="http://i0.kym-cdn.com/photos/images/original/000/427/974/846.png" alt="Cinque Terre"></img></a>
+            <a href="http://jamesreantillo.com/portfolio/"><img className="img-circle" img width="300px" height="300px" src="http://i0.kym-cdn.com/photos/images/original/000/427/974/846.png" alt="Cinque Terre"></img></a>
           <div className="caption">
             <p>James</p>
           </div>
         </div>
       </div>
 
-      <div className="col-md-4"> 
+      <div className="col-md-6"> 
         <div className=".img-rounded">
-          <a href="https://www.google.com"><img img width="400px" height="300px" src="http://wfiles.brothersoft.com/g/gintoki_79205-1600x1200.jpg" alt="Cinque Terre"></img></a>
+            <a href="https://fathao.github.io/Alex-Z/"><img className="img-circle" img width="300px" height="300px" src="http://wfiles.brothersoft.com/g/gintoki_79205-1600x1200.jpg" alt="Cinque Terre"></img></a>
           <div className="caption">
             <p>Alex</p>
           </div>
