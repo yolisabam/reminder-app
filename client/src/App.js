@@ -1,21 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "./Pages/Landing";
-// import Home from "./pages/Home";
+import User from "./Pages/User";
 import About from "./Pages/About";
-// import NoMatch from "./pages/NoMatch";
-// import Nav from ".components/Nav";
+// import NoMatch from "./Pages/NoMatch";
 
 const App = () => 
   <Router>
     <div>
-      {/*
-      <Nav />
-      <Header />
-      */}
       <Switch>
         <Route exact path="/" component={Landing} />
+        <Route exact path="/user" component={User}/>
         <Route exact path="/about" component={About}/>
+        {/* <Route component={NoMatch} /> */}
       </Switch>
     </div>
   </Router>;

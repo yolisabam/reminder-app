@@ -7,8 +7,8 @@ class LoginForm extends Component {
   state = {
     loginEmail : "",
     loginPassword : "",
-    isValidEmail: false,
-    isValidPassword : false
+    isValidEmail: true,
+    isValidPassword : true
   };
 
   handleInputChange = event => {
