@@ -3,8 +3,8 @@ import "./Hero.css";
 
 const Hero = props =>
   <section
-    className="hero text-center"
-    style={{ backgroundImage: `url(${props.backgroundImage})`}}
+    className="text-center"
+    id="hero"
   >
     {props.children}
   </section>;
