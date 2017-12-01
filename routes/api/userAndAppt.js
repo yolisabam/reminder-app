@@ -4,7 +4,7 @@ const userController = require("../../controllers/userController");
 const apptController = require("../../controllers/apptController");
 
 //Matches with "/api/login"
-router.route("login")
+router.route("/login")
   .post(userController.findOne);
 
 // //Matches with "/api/signup"

@@ -9,13 +9,14 @@ const router = express.Router();
 module.exports = {
   //method for finding one user
   findOne : function(req, res) {
-    db.user
+    console.log(req.body);
+    db.User
       .findOne({
         where : {
           email : req.body.email
         }
       })
-      .then(dbUser => 
+      .then(dbUser => {
         //if the user doesn't exist in the db
         !dbUser ?  
           res.json({
@@ -34,12 +35,11 @@ module.exports = {
             } else {
               res.json({isValidPassword : false});
             }
-          })
-        
+          }) 
+      }
       )
       .catch(err => res.status(422).json(err));
   }
-  ,
   // create : function(req, res) {
   //   db.user
   //     .findOne(req.body)

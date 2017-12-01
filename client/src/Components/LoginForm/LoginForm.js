@@ -52,6 +52,7 @@ class LoginForm extends Component {
         password : this.state.loginPassword
       })
         .then(res => {
+          console.log(res);
           //if email and password are valid
           if (res.isEmailValid && res.isPasswordValid) {
             //submit a GET request for "/home"
