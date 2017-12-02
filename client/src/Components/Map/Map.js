@@ -24,10 +24,12 @@ class SimpleForm extends React.Component {
     }
 
     return (
+      <div className="col-md-6">
       <form onSubmit={this.handleFormSubmit}>
         <PlacesAutocomplete inputProps={inputProps} />
         <button type="submit">Submit</button>
       </form>
+      </div>
     )
   }
 }
