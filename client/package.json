@@ -1,12 +1,13 @@
 {
   "name": "client",
   "version": "1.0.0",
+  "description": "reminderApp",
+  "author": "teamSix",
   "license": "MIT",
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.17.1",
-    "google-maps-react": "^1.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.1.6",
