@@ -1,6 +1,14 @@
 var mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
@@ -8,16 +16,12 @@ const userSchema = mongoose.Schema({
       return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
     }
   },
-  name: {
-    type: String,
-    required: true
-  },
   password: {
     type: String,
     min: [6, 'Password too short'],
     max: 16
   },
-  phoneNumber: {
+  mobileNumber: {
     type: String,
     validate: {
       validator: function (v) {
