@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const appointmentSchema = mongoose.Schema({
+const appointmentSchema = new Schema({
   appointmentName: {
     type: String,
     required: true
@@ -11,13 +12,13 @@ const appointmentSchema = mongoose.Schema({
       return new Date(v.getFullYear(), v.getMonth(), v.getDate());
     }
   },
-  time: {
-    validator: function (v) {
-      return /([01]\d|2[0-3]):?[0-5]\d/.test(v);
-    },
-    message: '{VALUE} is not a valid time format!',
-    required: [true, 'We need your time input in order to send you notification'],
-  },
+  // time: {
+  //   validator: function (v) {
+  //     return /([01]\d|2[0-3]):?[0-5]\d/.test(v);
+  //   },
+  //   message: '{VALUE} is not a valid time format!',
+  //   required: [true, 'We need your time input in order to send you notification'],
+  // },
 
 notification: {
   type: Number,
@@ -25,4 +26,6 @@ notification: {
 }
 });
 
-module.exports = mongoose.model("Appointment", articleSchema);
+const Appointment = mongoose.model("Appointment", appointmentSchema);
+
+module.exports = Appointment;

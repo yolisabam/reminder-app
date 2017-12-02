@@ -73,19 +73,20 @@ class LoginForm extends Component {
       .then(res => {
         console.log(res);
         //if email and password are valid
-        if (res.isEmailValid && res.isPasswordValid) {
+        if (res.data.isValidEmail && res.data.isValidPassword) {
           //submit a GET request for "/home"
-          axios.get("/user");
+          //axios.get("/user");
+          window.location.href = "/user";
         } 
         //else if email provided isn't in the db
-        else if (!res.isEmailValid) {
+        else if (!res.data.isValidEmail) {
           //update state
           this.setState({
             isValidEmail: false
           });
         }
         //else if password provided doesn't match what's in the db
-        else if (!res.isPasswordValid) {
+        else if (!res.isValidPassword) {
           //update state 
           this.setState({
             isValidPassword: false
@@ -99,6 +100,8 @@ class LoginForm extends Component {
   handleSignupFormSubmit = event => {
     //prevent page from refreshing by default
     event.preventDefault();
+
+    console.log("I clicked the save new user button");
 
     //assign the input value and validation states in this array of objects
     const createNewUserStates = [
@@ -120,21 +123,22 @@ class LoginForm extends Component {
     else if (this.state.signUpFirstName && this.state.signUpLastName && this.state.signUpEmail && this.state.signUpPassword && this.state.signUpPhone && this.state.isEmailUnique) 
     {
       API.saveUser({
-        firstName : this.signUpFirstName,
-        lastName : this.signUpLastName,
-        email : this.signUpEmail,
-        password : this.signUpPassword,
-        mobileNumber : this.signUpPhone
+        firstName : this.state.signUpFirstName,
+        lastName : this.state.signUpLastName,
+        email : this.state.signUpEmail,
+        password : this.state.signUpPassword,
+        mobileNumber : this.state.signUpPhone
       })
       .then(res => {
         console.log(res);
-        (res.isEmailUnique) ? this.closeModal() : this.setState({ isEmailUnique : false })
-      });
+        (res.data.isEmailUnique) ? this.closeModal() : this.setState({ isEmailUnique : false })
+      })
+      .catch(err => console.log(err));
     }
   };
 
   render() {
-    console.log(this.state);
+    //console.log(this.state);
     return (
       <div>
         <Modal 
@@ -239,110 +243,6 @@ class LoginForm extends Component {
             </div>
           </div>
         </Modal>
-        {/*
-        <div className="modal fade" id="signup" role="dialog" data-static="true">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="close" data-dismiss="modal">&times;</button>
-                <h4 className="modal-title">Sign Up Form</h4>
-              </div>
-              <div className="modal-body">
-                <div className="input-group">
-                  <span className="input-group-addon" id="basic-addon1">First Name </span>
-                  <input 
-                    value={this.state.signUpFirstName}
-                    name="signUpFirstName"
-                    onChange={this.handleInputChange}
-                    type="text" 
-                    className="form-control" 
-                    placeholder="first name" 
-                    aria-describedby="basic-addon1">
-                  </input>
-                  <div id="error-first-name-left-empty" className={!this.state.isSignUpFirstNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                    <p className="error text-center">Please provide your first name!</p>
-                  </div>
-                </div>
-                <br></br>
-                <div className="input-group">
-                  <span className="input-group-addon" id="basic-addon1">Last Name</span>
-                  <input 
-                    value={this.state.signUpLastName}
-                    name="signUpLastName"
-                    onChange={this.handleInputChange}
-                    type="text" 
-                    className="form-control" 
-                    placeholder="last name" 
-                    aria-describedby="basic-addon1">
-                  </input>
-                  <div id="error-last-name-left-empty" className={!this.state.isSignUpLastNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                    <p className="error text-center">Please provide your last name!</p>
-                  </div>
-                </div>
-                <br></br>
-                <div className="input-group">
-                  <span className="input-group-addon" id="basic-addon1">Email</span>
-                  <input 
-                    value={this.state.signUpEmail}
-                    name="signUpEmail"
-                    onChange={this.handleInputChange}
-                    type="email" 
-                    className="form-control" 
-                    placeholder="email" 
-                    aria-describedby="basic-addon1"></input>
-                  <div id="error-email-left-empty" className={!this.state.isSignUpEmailEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                    <p className="error text-center">Please provide your email!</p>
-                  </div>
-                  <div id="error-password-incorrect" className={this.state.isEmailUnique ? "error-div-signup invisible" : "error-div-signup"}>
-                    <p className="error text-center">The email provided was already used! Please enter a different email address.</p>
-                  </div>
-                </div>
-                <br></br>
-                <div className="input-group">
-                  <span className="input-group-addon" id="basic-addon1">Password</span>
-                  <input 
-                    value={this.state.signUpPassword}
-                    name="signUpPassword"
-                    onChange={this.handleInputChange}
-                    type="password" 
-                    className="form-control" 
-                    placeholder="password" 
-                    aria-describedby="basic-addon1"></input>
-                  <div id="error-password-left-empty" className={!this.state.isSignUpPasswordEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                    <p className="error text-center">Please provide your password!</p>
-                  </div>  
-                </div>
-                <br></br>
-                <div className="input-group">
-                  <span className="input-group-addon" id="basic-addon1">Mobile Number</span>
-                  <input 
-                    value={this.state.signUpPhone}
-                    name="signUpPhone"
-                    onChange={this.handleInputChange}
-                    type="phonenumber" 
-                    className="form-control" 
-                    placeholder="123-456-7899" 
-                    aria-describedby="basic-addon1"></input>
-                  <div id="error-phone-left-empty" className={!this.state.isSignUpPhoneEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                    <p className="error text-center">Please provide your mobile number!</p>
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button 
-                  type="submit" 
-                  className="btn btn-default" 
-                  data-toggle="modal" 
-                  data-target="#signup" 
-                  data-dismiss="modal"
-                  id="signup-submit"
-                  onClick={this.handleSignupFormSubmit}
-                >Submit</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        */}
         {/*Signup Form*/}
         <div className="panel panel-info">
           <div className="panel-body">
@@ -364,7 +264,7 @@ class LoginForm extends Component {
                 </div>
                 <br></br>
                 <div id="error-username-not-exist" className={this.state.isValidEmail ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">This username does not exist!</p>
+                  <p className="error text-center">This email does not exist!</p>
                 </div>
               </div>
               <div className="form-group">
