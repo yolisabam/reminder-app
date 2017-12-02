@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Hero from "../../Components/Hero";
 import "./User.css";
+import NavBar from "../../Components/NavBar";
 
 class User extends Component {
   state = {
@@ -10,6 +11,7 @@ class User extends Component {
   render() {
     return (
       <div class="container">
+        <NavBar />
         <Hero backgroundImage="https://images.crutchfieldonline.com/ImageHandler/scale/978/978/products/2014/41/158/x158NWZA17S-o_lifestyle.jpg">
             <h1>Welcome to the User Page!</h1>
             <h2>You will see and set up your appointments in this page</h2>
