@@ -8,6 +8,7 @@ export default {
   },
   //saves a new user into the database
   saveUser : function(userData) {
+    console.log(userData);
     return axios.post("/api/signup", userData);
   },
   //gets all appointments for the current user

@@ -7,9 +7,9 @@ const apptController = require("../../controllers/apptController");
 router.route("/login")
   .post(userController.findOne);
 
-// //Matches with "/api/signup"
-// router.route("signup")
-//   .post(userController.create);
+//Matches with "/api/signup"
+router.route("/signup")
+  .post(userController.create);
 
 // //Matches with "/api/user/appt"
 // router.route("user/:id/appt")
