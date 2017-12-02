@@ -2,27 +2,44 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./LoginForm.css";
 import API from "../../Utils/api";
+import Modal from 'react-modal';
 
 class LoginForm extends Component {
   state = {
+    //states for existing user login input elements values
     loginEmail : "",
     loginPassword : "",
+    //states to aid in validating existing user login 
     isLoginEmailEmpty : false,
     isLoginPasswordEmpty : false,
     isValidEmail: true,
     isValidPassword : true,
+
+    //states for new user input values
     signUpFirstName : "",
     signUpLastName : "",
     signUpEmail : "",
     signUpPassword : "",
     signUpPhone : "",
+    //states to aid validating new user input values
     isSignUpFirstNameEmpty : false,
     isSignUpLastNameEmpty : false,
     isSignUpEmailEmpty : false,
     isSignUpPasswordEmpty : false,
     isSignUpPhoneEmpty : false,
-    isUniqueEmail : true,
+    isEmailUnique : true,
+
+    //open/close state for the modal
+    modalIsOpen : false
   };
+
+  openModal = () =>
+    this.setState({ modalIsOpen : true });
+
+
+  closeModal = () => 
+    this.setState({ modalIsOpen : false });
+
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -36,44 +53,46 @@ class LoginForm extends Component {
     //prevent page from refreshing by default
     event.preventDefault();
 
-    //perform client-side form validations
-    if(!this.state.loginEmail) {
-      this.setState({isLoginEmailEmpty : true});
-    }
+    //assign the input value and validation states in this array of objects
+    const loginUserStates = [
+      { input : this.state.loginEmail, validation : "isLoginEmailEmpty" },
+      { input : this.state.loginPassword, validation : "isLoginPasswordEmpty" }
+    ];
 
-    if(!this.state.loginPassword) {
-      this.setState({isLoginPasswordEmpty : true});
-    }
+    loginUserStates.forEach(stateElement => {
+      (stateElement.input) ? this.setState({[stateElement.validation] : false}) : this.setState({[stateElement.validation] : true})
+    });
 
-    //if email and password are both provided
-    if ( this.state.loginEmail && this.state.loginPassword) {
+    //if all client-side input validations pass
+    if (this.state.loginEmail && this.state.loginPassword) {
+      //send a request to the server for the provided user login credentials
       API.getUser({
         email : this.state.loginEmail,
         password : this.state.loginPassword
       })
-        .then(res => {
-          console.log(res);
-          //if email and password are valid
-          if (res.isEmailValid && res.isPasswordValid) {
-            //submit a GET request for "/home"
-            axios.get("/user");
-          } 
-          //else if email provided isn't in the db
-          else if (!res.isEmailValid) {
-            //update state
-            this.setState({
-              isValidEmail: false
-            });
-          }
-          //else if password provided doesn't match what's in the db
-          else if (!res.isPasswordValid) {
-            //update state 
-            this.setState({
-              isValidPassword: false
-            });
-          }
-        })
-        .catch(err => console.log(err));
+      .then(res => {
+        console.log(res);
+        //if email and password are valid
+        if (res.isEmailValid && res.isPasswordValid) {
+          //submit a GET request for "/home"
+          axios.get("/user");
+        } 
+        //else if email provided isn't in the db
+        else if (!res.isEmailValid) {
+          //update state
+          this.setState({
+            isValidEmail: false
+          });
+        }
+        //else if password provided doesn't match what's in the db
+        else if (!res.isPasswordValid) {
+          //update state 
+          this.setState({
+            isValidPassword: false
+          });
+        }
+      })
+      .catch(err => console.log(err));
     } 
   };
 
@@ -81,13 +100,147 @@ class LoginForm extends Component {
     //prevent page from refreshing by default
     event.preventDefault();
 
+    //assign the input value and validation states in this array of objects
+    const createNewUserStates = [
+    { input : this.state.signUpFirstName, validation : "isSignUpFirstNameEmpty"},
+    { input : this.state.signUpLastName, validation : "isSignUpLastNameEmpty"},
+    { input : this.state.signUpEmail, validation : "isSignUpEmailEmpty"},
+    { input : this.state.signUpPassword, validation : "isSignUpPasswordEmpty"},
+    { input : this.state.signUpPhone, validation : "isSignUpPhoneEmpty"}
+    ];
+
+    //if any of the input values are empty
+    if (!this.state.signUpFirstName || !this.state.signUpLastName || !this.state.signUpEmail || !this.state.signUpPassword || !this.state.signUpPhone) {
+      //set the validation states to their appropriate values
+      createNewUserStates.forEach(stateElement => {
+      (stateElement.input) ? this.setState({[stateElement.validation] : false}) : this.setState({[stateElement.validation] : true})
+      });
+    } 
+    //else if all input values are not empty
+    else if (this.state.signUpFirstName && this.state.signUpLastName && this.state.signUpEmail && this.state.signUpPassword && this.state.signUpPhone && this.state.isEmailUnique) 
+    {
+      API.saveUser({
+        firstName : this.signUpFirstName,
+        lastName : this.signUpLastName,
+        email : this.signUpEmail,
+        password : this.signUpPassword,
+        mobileNumber : this.signUpPhone
+      })
+      .then(res => {
+        console.log(res);
+        (res.isEmailUnique) ? this.closeModal() : this.setState({ isEmailUnique : false })
+      });
+    }
   };
 
   render() {
     console.log(this.state);
     return (
       <div>
-        <div className="modal fade" id="signup" role="dialog">
+        <Modal 
+          className="col-sm-6 col-sm-offset-3"
+          isOpen={this.state.modalIsOpen}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <button type="button" className="close" onClick={this.closeModal}>&times;</button>
+              <h4 className="modal-title">Sign Up Form</h4>
+            </div>
+            <div className="modal-body">
+              <div className="input-group">
+                <span className="input-group-addon" id="basic-addon1">First Name </span>
+                <input 
+                  value={this.state.signUpFirstName}
+                  name="signUpFirstName"
+                  onChange={this.handleInputChange}
+                  type="text" 
+                  className="form-control" 
+                  placeholder="first name" 
+                  aria-describedby="basic-addon1">
+                </input>
+                <div id="error-first-name-left-empty" className={!this.state.isSignUpFirstNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                  <p className="error text-center">Please provide your first name!</p>
+                </div>
+              </div>
+              <br></br>
+              <div className="input-group">
+                <span className="input-group-addon" id="basic-addon1">Last Name</span>
+                <input 
+                  value={this.state.signUpLastName}
+                  name="signUpLastName"
+                  onChange={this.handleInputChange}
+                  type="text" 
+                  className="form-control" 
+                  placeholder="last name" 
+                  aria-describedby="basic-addon1">
+                </input>
+                <div id="error-last-name-left-empty" className={!this.state.isSignUpLastNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                  <p className="error text-center">Please provide your last name!</p>
+                </div>
+              </div>
+              <br></br>
+              <div className="input-group">
+                <span className="input-group-addon" id="basic-addon1">Email</span>
+                <input 
+                  value={this.state.signUpEmail}
+                  name="signUpEmail"
+                  onChange={this.handleInputChange}
+                  type="email" 
+                  className="form-control" 
+                  placeholder="email" 
+                  aria-describedby="basic-addon1"></input>
+                <div id="error-email-left-empty" className={!this.state.isSignUpEmailEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                  <p className="error text-center">Please provide your email!</p>
+                </div>
+                <div id="error-password-incorrect" className={this.state.isEmailUnique ? "error-div-signup invisible" : "error-div-signup"}>
+                  <p className="error text-center">The email provided was already used! Please enter a different email address.</p>
+                </div>
+              </div>
+              <br></br>
+              <div className="input-group">
+                <span className="input-group-addon" id="basic-addon1">Password</span>
+                <input 
+                  value={this.state.signUpPassword}
+                  name="signUpPassword"
+                  onChange={this.handleInputChange}
+                  type="password" 
+                  className="form-control" 
+                  placeholder="password" 
+                  aria-describedby="basic-addon1"></input>
+                <div id="error-password-left-empty" className={!this.state.isSignUpPasswordEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                  <p className="error text-center">Please provide your password!</p>
+                </div>  
+              </div>
+              <br></br>
+              <div className="input-group">
+                <span className="input-group-addon" id="basic-addon1">Mobile Number</span>
+                <input 
+                  value={this.state.signUpPhone}
+                  name="signUpPhone"
+                  onChange={this.handleInputChange}
+                  type="phonenumber" 
+                  className="form-control" 
+                  placeholder="123-456-7899" 
+                  aria-describedby="basic-addon1"></input>
+                <div id="error-phone-left-empty" className={!this.state.isSignUpPhoneEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                  <p className="error text-center">Please provide your mobile number!</p>
+                </div>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button 
+                type="submit" 
+                className="btn btn-default" 
+                data-toggle="modal" 
+                data-target="#signup" 
+                data-dismiss="modal"
+                id="signup-submit"
+                onClick={this.handleSignupFormSubmit}
+              >Submit</button>
+            </div>
+          </div>
+        </Modal>
+        {/*
+        <div className="modal fade" id="signup" role="dialog" data-static="true">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -140,7 +293,7 @@ class LoginForm extends Component {
                   <div id="error-email-left-empty" className={!this.state.isSignUpEmailEmpty ? "error-div-signup invisible" : "error-div-signup"}>
                     <p className="error text-center">Please provide your email!</p>
                   </div>
-                  <div id="error-password-incorrect" className={this.state.isUniqueEmail ? "error-div-signup invisible" : "error-div-signup"}>
+                  <div id="error-password-incorrect" className={this.state.isEmailUnique ? "error-div-signup invisible" : "error-div-signup"}>
                     <p className="error text-center">The email provided was already used! Please enter a different email address.</p>
                   </div>
                 </div>
@@ -177,7 +330,7 @@ class LoginForm extends Component {
               </div>
               <div className="modal-footer">
                 <button 
-                  type="button" 
+                  type="submit" 
                   className="btn btn-default" 
                   data-toggle="modal" 
                   data-target="#signup" 
@@ -189,7 +342,7 @@ class LoginForm extends Component {
             </div>
           </div>
         </div>
-
+        */}
         {/*Signup Form*/}
         <div className="panel panel-info">
           <div className="panel-body">
@@ -243,7 +396,7 @@ class LoginForm extends Component {
                     onClick={this.handleLoginFormSubmit}
                     >Sign in</button>
                   <hr></hr>
-                  <p id="need-acct">Need an account?<span><a href="#" id="sign-up" data-toggle="modal" data-target="#signup" data-dismiss="modal">&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
+                  <p id="need-acct">Need an account?<span><a href="#" id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
                 </div>
               </div>
             </form>    
