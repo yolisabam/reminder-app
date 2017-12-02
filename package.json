@@ -1,30 +1,22 @@
 {
   "name": "reminder-app",
   "version": "1.0.0",
-  "description": "a full stack app that enables users to set up reminders using MERN stack",
   "main": "server.js",
+  "repository": "https://github.com/yolisabam/reminder-app.git",
+  "author": "Winfred Sunga <winfredsunga01@gmail.com>",
   "scripts": {
-    "server": "yarn build && node server.js",
+    "server": "yarn build && nodemon server.js",
     "client": "cd client && npm run start",
     "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
     "build": "cd client && npm run build",
     "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yolisabam/reminder-app.git"
-  },
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
     "nodemon": "^1.11.0"
   },
-  "bugs": {
-    "url": "https://github.com/yolisabam/reminder-app/issues"
-  },
-  "homepage": "https://github.com/yolisabam/reminder-app#readme",
   "dependencies": {
     "axios": "^0.17.1",
     "babel": "^6.23.0",
@@ -39,6 +31,6 @@
     "react": "^16.2.0",
     "react-places-autocomplete": "^5.4.3",
     "router": "^1.3.2",
-    "twilio": "^3.10.0"
+    "twilio": "^3.10.1"
   }
 }

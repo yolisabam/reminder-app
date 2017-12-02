@@ -26,11 +26,7 @@ notification: {
 }
 });
 
-<<<<<<< HEAD
 const Appointment = mongoose.model("Appointment", appointmentSchema);
 
 module.exports = Appointment;
-=======
-module.exports = mongoose.model("Appointment", articleSchema);
 
->>>>>>> master
