@@ -28,4 +28,4 @@ notification: {
 });
 
 
-module.exports = mongoose.model("Appointment", articleSchema);
+module.exports = mongoose.model("Appointment", appointmentSchema);
