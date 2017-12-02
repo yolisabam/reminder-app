@@ -8,14 +8,13 @@ const schedulerTimer = () => {
   return {
     start: function(){
       new CronJob('00 * * * * *', function(){ 
+        console.log("Running send notfication worker for" + moment().format());
+        notfication.run();
+
+      }, null, true, '');
+    },
+  };
+};
 
 
-
-
-      })
-    }
-  }
-
-
-
-}
+module.exports = schedulerTimer();
