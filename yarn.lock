@@ -21,8 +21,8 @@ ajv@^4.9.1:
     json-stable-stringify "^1.0.1"
 
 ajv@^5.1.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.0.tgz#eb2840746e9dc48bd5e063a36e3fd400c5eab5a9"
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.1.tgz#b38bb8876d9e86bee994956a04e721e88b248eb2"
   dependencies:
     co "^4.6.0"
     fast-deep-equal "^1.0.0"
@@ -1373,7 +1373,7 @@ moment@2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
-moment@2.x.x, "moment@>= 2.9.0":
+moment@2.x.x, "moment@>= 2.9.0", moment@^2.19.3:
   version "2.19.3"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.3.tgz#bdb99d270d6d7fda78cc0fbace855e27fe7da69f"
 
@@ -2189,9 +2189,9 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-twilio@^3.10.0:
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/twilio/-/twilio-3.10.0.tgz#68f340e4d442a404a0e9dd2250330441df93b404"
+twilio@^3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/twilio/-/twilio-3.10.1.tgz#e33d4806937d8dddedc9afdb080565acaaddd0b1"
   dependencies:
     deprecate "1.0.0"
     jsonwebtoken "^7.4.1"
