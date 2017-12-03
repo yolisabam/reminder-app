@@ -25,7 +25,28 @@ notification: {
   type: Number,
   required: true
 }
-});
+}); 
+
+appointmentSchema.methods.requiresNotification = function(date) {
+  return Math.round(moment.duration(moment(this.time))
+                          .diff(moment(date))
+                          .asMinutes()) === this.notification;
+};
+
+appointmentSchema.statics.sendNotifications = function(cb) {
+  const searchDate = new Date();
+  Appointment
+    .find()
+    .then(function(appointments) {
+      appointments = appointments.filter(function(appointment){
+        return appointment.requiresNotification(searchDate);
+      });
+      if (appointments.length > 0) {
+        sendNotifications(appointment);
+      }
+    });
+
+}
 
 
 module.exports = mongoose.model("Appointment", appointmentSchema);
