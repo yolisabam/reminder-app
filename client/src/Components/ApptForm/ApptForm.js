@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import API from "../../Utils/api";
 import "./ApptForm.css";
+import Cookies2 from "js-cookie";
 
 class ApptForm extends Component {
   state = {
@@ -16,7 +17,8 @@ class ApptForm extends Component {
     isApptDateEmpty : false,
     isApptTimeEmpty : false,
     upcomingAppts : [],
-    pastAppts : []
+    pastAppts : [],
+    userCookie : ""
   };
 
   getUpcomingAppts() {
@@ -27,9 +29,31 @@ class ApptForm extends Component {
 
   }
 
+  componentWillMount() {
+    //set the user cookie state
+    this.setState(
+      { userCookie : Cookies2.get('user')
+    });
+  }
+
+  // componentWillMount() {
+  //   //set the user cookie state
+  //    if(!Cookies2.get('user')) {
+  //     window.location.href = "/";
+  //   } 
+  // }
+
   componentDidMount() {
-    //this.getUpcomingAppts();
-    //this.getPastAppts();
+    //if there is no user cookie, reroute to the login page
+    if( !this.state.userCookie) {
+      window.location.href = "/";
+    } 
+
+    else {
+      console.log("I have a cookie, so I can access this page");
+      //this.getUpcomingAppts();
+      //this.getPastAppts();
+    } 
   }
 
   handleInputChange = event => {
@@ -62,7 +86,7 @@ class ApptForm extends Component {
     else if (this.state.apptName && this.state.apptDate && this.state.apptTime && this.state.apptNotification && this.state.apptNotificationNumber  ) {
       console.log("I am now about to create my appointment");
       const temp_id = "5a23883a41d27f3b35bc740a";
-      
+
       API.saveUserAppointment( temp_id,{
         appointmentName : this.state.apptName,
         date : this.state.apptDate,
