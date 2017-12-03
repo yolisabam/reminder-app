@@ -32,7 +32,8 @@ class ApptForm extends Component {
   componentWillMount() {
     //set the user cookie state
     this.setState(
-      { userCookie : Cookies2.getJSON('user')
+      { userCookie : Cookies2.getJSON('user'),
+        apptNotificationNumber : Cookies2.getJSON('user').mobileNumber
     });
   }
 
@@ -171,7 +172,7 @@ class ApptForm extends Component {
                 <div class="form">
                   <input 
                     name="apptNotificationNumber"
-                    value={this.state.userCookie.mobileNumber || this.state.apptNotificationNumber}
+                    value={this.state.apptNotificationNumber}
                     onChange={this.handleInputChange}
                     type="text" 
                     id="appt_notif_num" 
