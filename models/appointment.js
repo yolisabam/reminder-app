@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 const Twilio = require('twilio');
+const config = require('../config')
 
 const appointmentSchema = mongoose.Schema({
   appointmentName: {
@@ -12,6 +13,10 @@ const appointmentSchema = mongoose.Schema({
     set: function (v) {
       return new Date(v.getFullYear(), v.getMonth(), v.getDate());
     }
+  },
+  appointmentNumber: {
+    type: String,
+    required:true
   },
   time: {
     validator: function (v) {
@@ -46,7 +51,29 @@ appointmentSchema.statics.sendNotifications = function(cb) {
       }
     });
 
-}
+    function sendNotifications(appointments) {
+      const client = new Twilio(config.twilioAccountSid, config.twilioAuthToken);
+      appointments.forEach(function(appointment) {
+        const message = {
+          to: `+ ${appointment.appointmentNumber}`,
+          from: config.twilioPhoneNumber,
+          body: `Hi! Just a quick reminder that ${appointment.appointmentName} is coming up !`,
+        };
 
+        client.messages.create(message, function(err, res){
+          if(err) {
+            console.log(err);
+          } else {
+            let phoneNumber = appointment.appointmentNumber;
+            console.log(`Reminder sent to ${phoneNumber}`);
+          }
+        });
+      });
+      if(cb) {
+        cb.call();
+      }
+    }
+};
 
-module.exports = mongoose.model("Appointment", appointmentSchema);
+const Appointment = mongoose.model("Appointment", appointmentSchema);
+module.exports = Appointment;
