@@ -4,7 +4,7 @@ import "./User.css";
 import NavBar from "../../Components/NavBar";
 import ApptForm from "../../Components/ApptForm";
 import SimpleForm from "../../Components/Map"
-
+import PresentWell from "../../Components/present-well"
 class User extends Component {
   state = {
 
@@ -23,7 +23,7 @@ class User extends Component {
                 <SimpleForm />
             </Hero>
           </div>
-        
+        <PresentWell />
         <br></br>
         <br></br>
         <hr></hr>
