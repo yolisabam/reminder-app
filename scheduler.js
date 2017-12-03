@@ -17,4 +17,5 @@ const schedulerTimer = () => {
 };
 
 
-module.exports = schedulerTimer();
+
+module.exports = schedulerTimer(); 
