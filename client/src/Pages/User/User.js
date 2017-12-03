@@ -23,7 +23,7 @@ class User extends Component {
                 <SimpleForm />
             </Hero>
           </div>
-        <PresentWell />
+        {/* <PresentWell /> */}
         <br></br>
         <br></br>
         <hr></hr>
