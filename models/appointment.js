@@ -3,7 +3,10 @@ const moment = require('moment');
 const Twilio = require('twilio');
 const config = require('../config')
 
-const appointmentSchema = mongoose.Schema({
+const Schema = mongoose.Schema;
+
+
+const appointmentSchema = new Schema({
   appointmentName: {
     type: String,
     required: true
@@ -19,17 +22,17 @@ const appointmentSchema = mongoose.Schema({
     required:true
   },
   time: {
-    validator: function (v) {
+    type : String,                               
+    validate: function (v) {
       return /([01]\d|2[0-3]):?[0-5]\d/.test(v);
     },
     message: '{VALUE} is not a valid time format!',
     required: [true, 'We need your time input in order to send you notification'],
   },
-
-notification: {
-  type: Number,
-  required: true
-}
+  notification: {
+    type: Number,
+    required: true
+  }
 }); 
 
 appointmentSchema.methods.requiresNotification = function(date) {
@@ -77,3 +80,4 @@ appointmentSchema.statics.sendNotifications = function(cb) {
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);
 module.exports = Appointment;
+
