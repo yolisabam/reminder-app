@@ -14,7 +14,9 @@ class LoginForm extends Component {
     isLoginPasswordEmpty : false,
     isValidEmail: true,
     isValidPassword : true,
-
+    emailValidate: function (email) {
+      return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
+    },
     //states for new user input values
     signUpFirstName : "",
     signUpLastName : "",
@@ -120,7 +122,7 @@ class LoginForm extends Component {
       });
     } 
     //else if all input values are not empty
-    else if (this.state.signUpFirstName && this.state.signUpLastName && this.state.signUpEmail && this.state.signUpPassword && this.state.signUpPhone && this.state.isEmailUnique) 
+    else if (this.state.signUpFirstName && this.state.signUpLastName && this.state.signUpEmail && this.state.signUpPassword && this.state.signUpPhone && this.state.isEmailUnique && this.state.emailValidate) 
     {
       API.saveUser({
         firstName : this.state.signUpFirstName,
