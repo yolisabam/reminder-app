@@ -32,7 +32,7 @@ class ApptForm extends Component {
   componentWillMount() {
     //set the user cookie state
     this.setState(
-      { userCookie : Cookies2.get('user')
+      { userCookie : Cookies2.getJSON('user')
     });
   }
 
@@ -110,13 +110,17 @@ class ApptForm extends Component {
   
   render() {
     console.log(this.state);
+    //console.log(Cookies2.getJSON("user.firstName"));
+    //console.log(Cookies2.getJSON("user.mobileNumber"));
+    //console.log(this.state.userCookie.firstName);
+    //console.log(this.state.userCookie.mobileNumber);
     return(
       <div className="container">
         <div className="row">
           <div className="col-md-5">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Appointment Form</h3>
+                <h3 class="panel-title">{`Greetings ${this.state.userCookie.firstName}, let's set up your notification(s)`}</h3>
               </div>
               <div class="panel-body">
                 <div class="form">
@@ -167,7 +171,7 @@ class ApptForm extends Component {
                 <div class="form">
                   <input 
                     name="apptNotificationNumber"
-                    value={this.state.apptNotificationNumber}
+                    value={this.state.userCookie.mobileNumber || this.state.apptNotificationNumber}
                     onChange={this.handleInputChange}
                     type="text" 
                     id="appt_notif_num" 
