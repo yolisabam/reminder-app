@@ -11,16 +11,16 @@ router.route("/login")
 router.route("/signup")
   .post(userController.create);
 
-// //Matches with "/api/user/appt"
-// router.route("user/:id/appt")
+// //Matches with "/api/user/appt/"
+// router.route("/user/:id/appt")
 //   .get(apptController.findAll);
 
-// //Matches with "/api/user/appt/"
-// router.route("user/:id/appt/")
-//   .post(apptController.create);
+//Matches with "/api/user/appt/"
+router.route("/user/:id/appt")
+  .post(apptController.create);
 
 // //Matches with "/api/user/appt/:id"
-// router.route("user/:id/appt/:id")
+// router.route("/user/:id/appt/:id")
 //   .put(apptController.update)
 //   .delete(apptController.remove);
 

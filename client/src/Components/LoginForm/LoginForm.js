@@ -21,6 +21,7 @@ class LoginForm extends Component {
     signUpEmail : "",
     signUpPassword : "",
     signUpPhone : "",
+    emailValidation : "",
     //states to aid validating new user input values
     isSignUpFirstNameEmpty : false,
     isSignUpLastNameEmpty : false,
@@ -42,6 +43,7 @@ class LoginForm extends Component {
 
 
   handleInputChange = event => {
+    //update the state for every key stroke inside the input elements
     const { name, value } = event.target;
     this.setState({
       [name] : value.trim()
@@ -63,6 +65,8 @@ class LoginForm extends Component {
       (stateElement.input) ? this.setState({[stateElement.validation] : false}) : this.setState({[stateElement.validation] : true})
     });
 
+        
+    // const emailValidation = /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     //if all client-side input validations pass
     if (this.state.loginEmail && this.state.loginPassword) {
       //send a request to the server for the provided user login credentials
@@ -105,11 +109,11 @@ class LoginForm extends Component {
 
     //assign the input value and validation states in this array of objects
     const createNewUserStates = [
-    { input : this.state.signUpFirstName, validation : "isSignUpFirstNameEmpty"},
-    { input : this.state.signUpLastName, validation : "isSignUpLastNameEmpty"},
-    { input : this.state.signUpEmail, validation : "isSignUpEmailEmpty"},
-    { input : this.state.signUpPassword, validation : "isSignUpPasswordEmpty"},
-    { input : this.state.signUpPhone, validation : "isSignUpPhoneEmpty"}
+      { input : this.state.signUpFirstName, validation : "isSignUpFirstNameEmpty"},
+      { input : this.state.signUpLastName, validation : "isSignUpLastNameEmpty"},
+      { input : this.state.signUpEmail, validation : "isSignUpEmailEmpty"},
+      { input : this.state.signUpPassword, validation : "isSignUpPasswordEmpty"},
+      { input : this.state.signUpPhone, validation : "isSignUpPhoneEmpty"}
     ];
 
     //if any of the input values are empty
