@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "./LoginForm.css";
 import API from "../../Utils/api";
 import Modal from 'react-modal';
@@ -250,7 +249,7 @@ class LoginForm extends Component {
         {/*Signup Form*/}
         <div className="panel panel-info">
           <div className="panel-body">
-            <form role="form" className="form-horizontal">  
+            <form className="form-horizontal">  
               <div className="form-group">
                 <label for="inputUserName" className="col-sm-4 control-label">Email</label>
                 <div className="col-sm-6">
@@ -300,7 +299,7 @@ class LoginForm extends Component {
                     onClick={this.handleLoginFormSubmit}
                     >Sign in</button>
                   <hr></hr>
-                  <p id="need-acct">Need an account?<span><a href="#" id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
+                  <p id="need-acct">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
                 </div>
               </div>
             </form>    

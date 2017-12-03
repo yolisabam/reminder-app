@@ -28,17 +28,17 @@ mongoose.connect(
   }
 );
 
-// const db = mongoose.connection;
+const db = mongoose.connection;
 
-// //show any mongoose errors
-// db.on("error", function(err) {
-//   console.log("Mongoose Error: ", err);
-// });
+//show any mongoose errors
+db.on("error", function(err) {
+  console.log("Mongoose Error: ", err);
+});
 
-// //once logged in to the db through mongoose, log a success message
-// db.once("open", function() {
-//   console.log("Mongoose connection successful.");
-// });
+//once logged in to the db through mongoose, log a success message
+db.once("open", function() {
+  console.log("Mongoose connection successful.");
+});
 
 // Start the API server
 app.listen(PORT, function() {

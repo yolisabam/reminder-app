@@ -4,15 +4,33 @@ import "./ApptForm.css";
 
 class ApptForm extends Component {
   state = {
+    userId : "",
     apptName : "",
     apptDate : "",
     apptTime : "",
+    apptNotification : "",
     apptNotificationNumber : "",
     isApptNameEmpty : false,
     isApptNotificationNumberEmpty : false,
+    isApptNotificationEmpty : false,
     isApptDateEmpty : false,
-    isApptTimeEmpty : false
+    isApptTimeEmpty : false,
+    upcomingAppts : [],
+    pastAppts : []
   };
+
+  getUpcomingAppts() {
+
+  }
+
+  getPastAppts() {
+
+  }
+
+  componentDidMount() {
+    //this.getUpcomingAppts();
+    //this.getPastAppts();
+  }
 
   handleInputChange = event => {
     //update the state for every key stroke inside the input elements
@@ -24,18 +42,16 @@ class ApptForm extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-
-    console.log("I am now about to create my appointment");
-
     const createNewApptStates = [
       { input : this.state.apptName , validation : "isApptNameEmpty"},
       { input : this.state.apptNotificationNumber, validation : "isApptNotificationNumberEmpty"},
       { input : this.state.apptDate , validation : "isApptDateEmpty"},
-      { input : this.state.apptTime , validation : "isApptTimeEmpty"}
+      { input : this.state.apptTime , validation : "isApptTimeEmpty"},
+      { input : this.state.apptNotification, validation : "isApptNotificationEmpty"}
     ];
 
     //if any of the input values are empty
-    if (!this.state.apptName || this.state.apptNotificationNumber || this.state.apptDate || this.state.apptTime) {
+    if (!this.state.apptName || !this.state.apptNotificationNumber || !this.state.apptDate ||!this.state.apptTime || !this.state.apptNotification) {
       //set the validation states to their appropriate values
       //set the validation states to their appropriate values
       createNewApptStates.forEach(stateElement => {
@@ -43,12 +59,16 @@ class ApptForm extends Component {
       });
     } 
     //else if all input values are not empty
-    else if (this.state.apptName && this.state.apptNotificationNumber && this.state.apptDate && this.state.apptTime) {
-      API.saveUserAppointment({
+    else if (this.state.apptName && this.state.apptDate && this.state.apptTime && this.state.apptNotification && this.state.apptNotificationNumber  ) {
+      console.log("I am now about to create my appointment");
+      const temp_id = "5a23883a41d27f3b35bc740a";
+      
+      API.saveUserAppointment( temp_id,{
         appointmentName : this.state.apptName,
         date : this.state.apptDate,
         time : this.state.apptTime,
-        appointmentNumber : this.state.apptNotificationNumber
+        appointmentNumber : this.state.apptNotificationNumber,
+        notification : this.state.apptNotification
       })
       .then(res => {
         console.log(res);
@@ -92,21 +112,6 @@ class ApptForm extends Component {
                 <br></br>
                 <div class="form">
                   <input 
-                    name="apptNotificationNumber"
-                    value={this.state.apptNotificationNumber}
-                    onChange={this.handleInputChange}
-                    type="text" 
-                    id="appt_notif_num" 
-                    className="form-control" 
-                    placeholder="Notification Phone Number">
-                  </input>
-                  <div id="error-appt-name-left-empty" className={!this.state.isApptNameEmpty ? "error-div-appt-name invisible" : "error-div-appt-name"}>
-                    <p className="error text-center">Please provide your appointment name!</p>
-                  </div>
-                </div>
-                <br></br>
-                <div class="form">
-                  <input 
                     name="apptDate"
                     value={this.state.apptDate}
                     onChange={this.handleInputChange}
@@ -134,6 +139,22 @@ class ApptForm extends Component {
                     <p className="error text-center">Please provide your appointment time!</p>
                   </div>
                 </div>
+                <br></br>
+                <div class="form">
+                  <input 
+                    name="apptNotificationNumber"
+                    value={this.state.apptNotificationNumber}
+                    onChange={this.handleInputChange}
+                    type="text" 
+                    id="appt_notif_num" 
+                    className="form-control" 
+                    placeholder="Notification Phone Number">
+                  </input>
+                  <div id="error-appt-name-left-empty" className={!this.state.isApptNameEmpty ? "error-div-appt-name invisible" : "error-div-appt-name"}>
+                    <p className="error text-center">Please provide your appointment name!</p>
+                  </div>
+                </div>
+                <br></br>
                 <div class="form">
                   <input 
                     name="apptNotification"
@@ -147,6 +168,16 @@ class ApptForm extends Component {
                   <div id="error-appt-notification-left-empty" className={!this.state.isApptNotificationEmpty ? "error-div-appt-notification invisible" : "error-div-appt-notification"}>
                     <p className="error text-center">Please provide your appointment notification!</p>
                   </div>
+                  <br></br>
+                  {/*<div className="modal-footer">*/}
+                  <hr></hr>
+                  <button 
+                    type="submit" 
+                    className="btn btn-default" 
+                    id="appt-submit"
+                    onClick={this.handleFormSubmit}
+                  >Submit</button>
+                  {/*</div>*/}
                 </div>
               </div>
             </div>
