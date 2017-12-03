@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./LoginForm.css";
 import API from "../../Utils/api";
 import Modal from 'react-modal';
+import Cookies2 from "js-cookie";
 
 class LoginForm extends Component {
   state = {
@@ -30,8 +31,22 @@ class LoginForm extends Component {
     isEmailUnique : true,
 
     //open/close state for the modal
-    modalIsOpen : false
+    modalIsOpen : false,
+
+    //state for user Cookie
+    userCookie : ""
+
   };
+
+  componentWillMount() {
+    //when the component mounts and sees that there is a cookie for your login credential, you are redirected to the user page
+    //const Cookies2 = Cookies.noConflict();
+    this.setState({ userCookie : Cookies2.get('user') });
+  }
+
+  componentDidMount() {
+    (this.state.userCookie) ? window.location.href = "/user" : window.location.href = "/"
+  }
 
   openModal = () =>
     this.setState({ modalIsOpen : true });
@@ -79,6 +94,7 @@ class LoginForm extends Component {
         if (res.data.isValidEmail && res.data.isValidPassword) {
           //submit a GET request for "/home"
           //axios.get("/user");
+          Cookies2.set('user', res.data.userInfo);
           window.location.href = "/user";
         } 
         //else if email provided isn't in the db
@@ -103,7 +119,6 @@ class LoginForm extends Component {
   handleSignupFormSubmit = event => {
     //prevent page from refreshing by default
     event.preventDefault();
-
     console.log("I clicked the save new user button");
 
     //assign the input value and validation states in this array of objects
@@ -141,7 +156,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    //console.log(this.state);
+    console.log(this.state);
     return (
       <div>
         <Modal 
