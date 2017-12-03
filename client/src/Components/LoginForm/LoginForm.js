@@ -45,7 +45,9 @@ class LoginForm extends Component {
   }
 
   componentDidMount() {
-    (this.state.userCookie) ? window.location.href = "/user" : window.location.href = "/"
+    if(this.state.userCookie) {
+      window.location.href = "/user" //: window.location.href = "/"
+    }
   }
 
   openModal = () =>
