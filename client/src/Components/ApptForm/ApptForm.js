@@ -11,8 +11,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 class ApptForm extends Component {
   state = {
     apptName : "",
-    apptDate : moment(),
-    // apptTime : "",
+    //apptDate : moment(),
+    apptTime : moment(),
     apptNotification : "",
     apptNotificationNumber : "",
     isApptNameEmpty : false,
@@ -26,7 +26,7 @@ class ApptForm extends Component {
     const {
       user, 
       apptName,
-      apptDate,
+      //apptDate,
       apptTime,
       apptNotification,
       apptNotificationNumber
@@ -35,8 +35,8 @@ class ApptForm extends Component {
     //set the user cookie state
     this.setState({ 
       apptName: apptName || '',
-      apptDate: apptDate || '',
-      apptTime: apptTime || '',
+      //apptDate: apptDate || '',
+      apptTime: moment(),
       apptNotification: apptNotification || '',
       apptNotificationNumber: apptNotificationNumber || user.mobileNumber
     });
@@ -66,13 +66,13 @@ class ApptForm extends Component {
     const createNewApptStates = [
       { input : this.state.apptName , validation : "isApptNameEmpty"},
       { input : this.state.apptNotificationNumber, validation : "isApptNotificationNumberEmpty"},
-      { input : this.state.apptDate , validation : "isApptDateEmpty"},
-      // { input : this.state.apptTime , validation : "isApptTimeEmpty"},
+      //{ input : this.state.apptDate , validation : "isApptDateEmpty"},
+      { input : this.state.apptTime , validation : "isApptTimeEmpty"},
       { input : this.state.apptNotification, validation : "isApptNotificationEmpty"}
     ];
 
     //if any of the input values are empty
-    if (!this.state.apptName || !this.state.apptNotificationNumber || !this.state.apptDate || !this.state.apptNotification) {
+    if (!this.state.apptName || !this.state.apptNotificationNumber || !this.state.apptTime || !this.state.apptNotification) {
       //set the validation states to their appropriate values
       //set the validation states to their appropriate values
       createNewApptStates.forEach(stateElement => {
@@ -80,12 +80,12 @@ class ApptForm extends Component {
       });
     } 
     //else if all input values are not empty
-    else if (this.state.apptName && this.state.apptDate  && this.state.apptNotification && this.state.apptNotificationNumber) {
+    else if (this.state.apptName && this.state.apptTime  && this.state.apptNotification && this.state.apptNotificationNumber) {
       console.log("I am now about to create my appointment");
-      API.saveUserAppointment( this.state.userCookie._id,{
+      API.saveUserAppointment( this.props.user._id,{
         appointmentName : this.state.apptName,
-        date : this.state.apptDate,
-        // time : this.state.apptTime,
+        //date : this.state.apptTime,
+        time : this.state.apptTime,
         appointmentNumber : this.state.apptNotificationNumber,
         notification : this.state.apptNotification
       })
@@ -94,8 +94,8 @@ class ApptForm extends Component {
         //empty out the input elements
         this.setState({
           apptName : "",
-          apptDate : moment(),
-          // apptTime : "",
+          //apptDate : moment(),
+          apptTime : moment(),
           apptNotification : ""
           //apptNotificationNumber : "",
         });
@@ -152,7 +152,7 @@ class ApptForm extends Component {
   //handleChange from date picker
   handleDateChange = date => {
     this.setState({
-      apptDate : date
+      apptTime : date
     });
   };
   
@@ -189,19 +189,19 @@ class ApptForm extends Component {
                   </div>
                   <br></br>
                   <div className="form-group">
-                    <label className="control-label col-sm-5" for="appt-date">Appointment Date</label>
+                    <label className="control-label col-sm-5" for="appt-date">Appointment Date/Time</label>
                     <div className="col-sm-7">  
                       <DatePicker
                         id="appt-date"
-                        selected={this.state.apptDate}
+                        selected={this.state.apptTime}
                         onChange={this.handleDateChange}
                         showTimeSelect
                         dateFormat="LLL"
                         className="col-sm-12"
                       />
                     </div>  
-                    <div id="error-appt-date-left-empty" className={!this.state.isApptDateEmpty ? "error-div-appt-date invisible" : "error-div-appt-date"}>
-                      <p className="error text-center">Please provide your appointment date!</p>
+                    <div id="error-appt-date-left-empty" className={!this.state.isApptTimeEmpty ? "error-div-appt-date invisible" : "error-div-appt-date"}>
+                      <p className="error text-center">Please provide your appointment date and time!</p>
                     </div>
                   </div>
                   <br></br>

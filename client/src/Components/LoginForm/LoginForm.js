@@ -280,7 +280,7 @@ class LoginForm extends Component {
                   onChange={this.handleInputChange}
                   type="phonenumber" 
                   className="form-control" 
-                  placeholder="123-456-7899" 
+                  placeholder="1234567899" 
                   aria-describedby="basic-addon1"></input>
                 <div id="error-phone-left-empty" className={!this.state.isSignUpPhoneEmpty ? "error-div-signup invisible" : "error-div-signup"}>
                   <p className="error text-center">Please provide your mobile number!</p>

@@ -11,6 +11,7 @@ class User extends Component {
 
   render() {
     const user = Cookies2.getJSON('user');
+    console.log(user);
     return (
       <div class="container">
         <NavBar />
@@ -22,7 +23,7 @@ class User extends Component {
               <SimpleForm />
           </Hero>
         </div>
-        <PresentWell user={user} />
+        <PresentWell user={user}/>
         <br></br>
         <br></br>
         <hr></hr>
