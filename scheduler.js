@@ -9,7 +9,7 @@ const schedulerTimer = () => {
     start: function(){
       new CronJob('00 * * * * *', function(){ 
         console.log("Running send notfication worker for" + moment().format());
-        notfication.run();
+        notification.run();
 
       }, null, true, '');
     },

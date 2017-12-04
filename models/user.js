@@ -31,7 +31,15 @@ const userSchema = new Schema({
     //   message: '{VALUE} is not a valid phone number!'
     // },
     required: true//[true, 'We need your phone number in order to send you notification']
-  }
+  },
+  appointments: [
+    {
+      // Store ObjectIds in the array
+      type: Schema.Types.ObjectId,
+      // The ObjectIds will refer to the ids in the Note model
+      ref: "Appointment"
+    }
+  ]
 });
 
 const User = mongoose.model("User", userSchema);
