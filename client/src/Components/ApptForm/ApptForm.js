@@ -103,7 +103,7 @@ class ApptForm extends Component {
         //empty out the input elements
         this.setState({
           apptName : "",
-          apptDate : "",
+          apptDate : moment(),
           // apptTime : "",
           apptNotification : ""
           //apptNotificationNumber : "",
