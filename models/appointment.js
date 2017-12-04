@@ -18,14 +18,14 @@ const appointmentSchema = new Schema({
     //   return new Date(v.getFullYear(), v.getMonth(), v.getDate());
     //}
   },
-  time: {
-    type : String,                               
-    validate: function (v) {
-      return /([01]\d|2[0-3]):?[0-5]\d/.test(v);
-    },
-    message: '{VALUE} is not a valid time format!',
-    required: [true, 'We need your time input in order to send you notification'],
-  },
+  // time: {
+  //   type : String,                               
+  //   validate: function (v) {
+  //     return /([01]\d|2[0-3]):?[0-5]\d/.test(v);
+  //   },
+  //   message: '{VALUE} is not a valid time format!',
+  //   required: [true, 'We need your time input in order to send you notification'],
+  // },
   appointmentNumber: {
     type: String,
     required:true
