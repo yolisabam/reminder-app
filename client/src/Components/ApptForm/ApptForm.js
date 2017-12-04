@@ -86,7 +86,6 @@ class ApptForm extends Component {
           notification: this.state.apptNotification
         })
           .then(res => {
-            console.log(res);
             //empty out the input elements
             this.setState({
               apptName: "",
@@ -94,7 +93,7 @@ class ApptForm extends Component {
               apptTime: "",
               apptNumber: ""
             });
-            console.log(this.props.handleSubmit);
+
             this.props.handleSubmit && this.props.handleSubmit();
           })
           .catch(err => console.log(err))
@@ -108,7 +107,6 @@ class ApptForm extends Component {
           notification: this.state.apptNotification
         })
           .then(res => {
-            console.log(res);
             //empty out the input elements
             this.setState({
               apptName: "",
