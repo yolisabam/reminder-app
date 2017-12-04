@@ -11,7 +11,7 @@ router.route("/login")
 router.route("/signup")
   .post(userController.create);
 
-router.route("/user/:id/appt")
+router.route("/user/:userid/appt/:id*?")
   .get(apptController.get)
   .post(apptController.create)
   .put(apptController.update)

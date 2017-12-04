@@ -13,7 +13,7 @@ export default {
   },
   //gets all appointments for the current user
   getUserAppointments : function(userId) {
-    return axios.get(`/api/user/${userId}/appt/`);
+    return axios.get(`/api/user/${userId}/appt`);
   },
   //save an appointment for the current user
   saveUserAppointment : function(userId, apptData) {
@@ -21,10 +21,10 @@ export default {
   },
   //update an appointment for the current user
   updateUserAppointment : function(userId, apptId) {
-    return axios.put(`appt/user/${userId}/appt/${apptId}`);
+    return axios.put(`/api/user/${userId}/appt/${apptId}`);
   },
   //delete an appointment for the current user
   deleteUserAppointment : function(userId, apptId) {
-    return axios.delete(`appt/user/${userId}/appt/${apptId}`);
+    return axios.delete(`/api/user/${userId}/appt/${apptId}`);
   }
 };
