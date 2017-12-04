@@ -24,9 +24,9 @@ module.exports = {
     const id = req.param('id');
     db.Appointment.findOne({ _id: id })
       .then(dbAppt => {
-        console.log(id, dbAppt);
         if (dbAppt) {
           // update
+          console.log('Updating appointment');
           dbAppt.appointmentName = req.body.appointmentName;
           dbAppt.date = req.body.date;
           dbAppt.time = req.body.time;
