@@ -14,9 +14,7 @@ class LoginForm extends Component {
     isLoginPasswordEmpty : false,
     isValidEmail: true,
     isValidPassword : true,
-    emailValidate: function (email) {
-      return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
-    },
+
     //states for new user input values
     signUpFirstName : "",
     signUpLastName : "",
@@ -30,30 +28,40 @@ class LoginForm extends Component {
     isSignUpPasswordEmpty : false,
     isSignUpPhoneEmpty : false,
     isEmailUnique : true,
+    isEmailValid : true,
+
+    isSubmitButtonPressed : false,
 
     //open/close state for the modal
     modalIsOpen : false
   };
 
-  openModal = () =>
-    this.setState({ modalIsOpen : true });
+  emailValidate(email) {
+    // if email doesn't exist, let it pass
+    // otherwise, check if email is valid
+    return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
+  }
 
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
 
-  closeModal = () => 
-    this.setState({ modalIsOpen : false });
-
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name] : value.trim()
     });
-    
   };
 
   handleLoginFormSubmit = event => {
     //prevent page from refreshing by default
     event.preventDefault();
+
+    this.state.isSubmitButtonPressed = true;
 
     //assign the input value and validation states in this array of objects
     const loginUserStates = [
@@ -105,31 +113,42 @@ class LoginForm extends Component {
 
     console.log("I clicked the save new user button");
 
+    const {
+      signUpFirstName,
+      signUpLastName,
+      signUpEmail,
+      signUpPassword,
+      signUpPhone,
+      isEmailUnique
+    } = this.state;
+
     //assign the input value and validation states in this array of objects
     const createNewUserStates = [
-    { input : this.state.signUpFirstName, validation : "isSignUpFirstNameEmpty"},
-    { input : this.state.signUpLastName, validation : "isSignUpLastNameEmpty"},
-    { input : this.state.signUpEmail, validation : "isSignUpEmailEmpty"},
-    { input : this.state.signUpPassword, validation : "isSignUpPasswordEmpty"},
-    { input : this.state.signUpPhone, validation : "isSignUpPhoneEmpty"}
+      { input : signUpFirstName, validation : "isSignUpFirstNameEmpty"},
+      { input : signUpLastName, validation : "isSignUpLastNameEmpty"},
+      { input : signUpEmail, validation : "isSignUpEmailEmpty"},
+      { input : signUpPassword, validation : "isSignUpPasswordEmpty"},
+      { input : signUpPhone, validation : "isSignUpPhoneEmpty"}
     ];
 
+    this.state.isEmailValid = !signUpEmail || this.emailValidate(signUpEmail);
     //if any of the input values are empty
-    if (!this.state.signUpFirstName || !this.state.signUpLastName || !this.state.signUpEmail || !this.state.signUpPassword || !this.state.signUpPhone) {
+    if (!signUpFirstName || !signUpLastName || !signUpEmail || !signUpPassword || !signUpPhone) {
       //set the validation states to their appropriate values
       createNewUserStates.forEach(stateElement => {
-      (stateElement.input) ? this.setState({[stateElement.validation] : false}) : this.setState({[stateElement.validation] : true})
+        const inputExist = !!stateElement.input;
+        this.setState({ [stateElement.validation]: !inputExist });
       });
-    } 
+    }
     //else if all input values are not empty
-    else if (this.state.signUpFirstName && this.state.signUpLastName && this.state.signUpEmail && this.state.signUpPassword && this.state.signUpPhone && this.state.isEmailUnique && this.state.emailValidate) 
+    else if (signUpFirstName && signUpLastName && signUpEmail && signUpPassword && signUpPhone && isEmailUnique) 
     {
       API.saveUser({
-        firstName : this.state.signUpFirstName,
-        lastName : this.state.signUpLastName,
-        email : this.state.signUpEmail,
-        password : this.state.signUpPassword,
-        mobileNumber : this.state.signUpPhone
+        firstName : signUpFirstName,
+        lastName : signUpLastName,
+        email : signUpEmail,
+        password : signUpPassword,
+        mobileNumber : signUpPhone
       })
       .then(res => {
         console.log(res);
@@ -143,6 +162,7 @@ class LoginForm extends Component {
     //console.log(this.state);
     return (
       <div>
+        {/* Sign Up Form */}
         <Modal 
           className="col-sm-6 col-sm-offset-3"
           isOpen={this.state.modalIsOpen}>
@@ -194,13 +214,22 @@ class LoginForm extends Component {
                   className="form-control" 
                   placeholder="email" 
                   aria-describedby="basic-addon1"></input>
-                <div id="error-email-left-empty" className={!this.state.isSignUpEmailEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+              </div>
+              {this.state.isSignUpEmailEmpty &&
+                <div id="error-email-left-empty" className="error-div-signup">
                   <p className="error text-center">Please provide your email!</p>
                 </div>
-                <div id="error-password-incorrect" className={this.state.isEmailUnique ? "error-div-signup invisible" : "error-div-signup"}>
+              }
+              {!this.state.isEmailUnique &&
+                <div id="error-password-incorrect" className="error-div-signup">
                   <p className="error text-center">The email provided was already used! Please enter a different email address.</p>
                 </div>
-              </div>
+              }
+              {!this.state.isEmailValid &&
+                <div id="error-password-incorrect" className="error-div-signup">
+                  <p className="error text-center">Email is not valid!</p>
+                </div>
+              }
               <br></br>
               <div className="input-group">
                 <span className="input-group-addon" id="basic-addon1">Password</span>
@@ -245,11 +274,28 @@ class LoginForm extends Component {
             </div>
           </div>
         </Modal>
-        {/*Signup Form*/}
+        {/* Login Form */}
         <div className="panel panel-info">
           <div className="panel-body">
             <form role="form" className="form-horizontal">  
               <div className="form-group">
+                {/* <label>Test</label>
+                <div className="col-sm-6">
+                  <input
+                    ref={(input) => { this.testInput = input; }}
+                    value={this.state.testInput}
+                    name="loginTest"
+                    required
+                    type="email"
+                    pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                    className="form-control"
+                    id="input-test"
+                    placeholder="test"/>
+                  {this.state.isSubmitButtonPressed && this.testInput.validity.patternMismatch &&
+                  <p>Invalid Email Message</p>
+                  }
+                </div> */}
+
                 <label for="inputUserName" className="col-sm-4 control-label">Email</label>
                 <div className="col-sm-6">
                   <input 
