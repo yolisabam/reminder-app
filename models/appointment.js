@@ -4,10 +4,6 @@ const Twilio = require('twilio');
 const config = require('../config')
 
 const appointmentSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
   appointmentName: {
     type: String,
     required: true
