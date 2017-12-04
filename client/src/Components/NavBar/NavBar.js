@@ -9,7 +9,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div class="container">
+      <div className="container">
         <nav className="navbar navbar-default">
           <div className="container-fluid">
   

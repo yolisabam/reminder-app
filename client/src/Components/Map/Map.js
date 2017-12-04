@@ -10,7 +10,7 @@ class SimpleForm extends React.Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault()
-
+    // console.log(event)
     geocodeByAddress(this.state.address)
       .then(results => getLatLng(results[0]))
       .then(latLng => console.log('Success', latLng))

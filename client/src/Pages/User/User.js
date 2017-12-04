@@ -3,7 +3,8 @@ import Hero from "../../Components/Hero";
 import "./User.css";
 import NavBar from "../../Components/NavBar";
 import ApptForm from "../../Components/ApptForm";
-import SimpleForm from "../../Components/Map"
+import SimpleForm from "../../Components/Map";
+import MapRender from "../../Components/MapRender"
 
 class User extends Component {
   state = {
@@ -12,7 +13,7 @@ class User extends Component {
 
   render() {
     return (
-      <div class="container">
+      <div className="container">
         <NavBar />
           <div>
 
@@ -20,6 +21,7 @@ class User extends Component {
                 <h1>Welcome to the User Page!</h1>
                 <h2>You will see and set up your appointments in this page</h2>
                 <ApptForm />
+                <MapRender />
                 <SimpleForm />
             </Hero>
           </div>
