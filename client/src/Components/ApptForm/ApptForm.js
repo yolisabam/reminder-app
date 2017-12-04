@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import API from "../../Utils/api";
 import "./ApptForm.css";
-import Cookies2 from "js-cookie";
 
 class ApptForm extends Component {
   state = {
-    userId : "",
     apptName : "",
     apptDate : "",
     apptTime : "",
@@ -15,45 +13,25 @@ class ApptForm extends Component {
     isApptNotificationNumberEmpty : false,
     isApptNotificationEmpty : false,
     isApptDateEmpty : false,
-    isApptTimeEmpty : false,
-    upcomingAppts : [],
-    pastAppts : [],
-    userCookie : ""
+    isApptTimeEmpty : false
   };
 
-  getUpcomingAppts() {
-
-  }
-
-  getPastAppts() {
-
-  }
-
   componentWillMount() {
+    const { user } = this.props;
     //set the user cookie state
-    this.setState(
-      { userCookie : Cookies2.getJSON('user'),
-        apptNotificationNumber : Cookies2.getJSON('user').mobileNumber
+    this.setState({ 
+      apptNotificationNumber : user.mobileNumber
     });
   }
 
-  // componentWillMount() {
-  //   //set the user cookie state
-  //    if(!Cookies2.get('user')) {
-  //     window.location.href = "/";
-  //   } 
-  // }
-
   componentDidMount() {
     //if there is no user cookie, reroute to the login page
-    if( !this.state.userCookie) {
+    if(!this.props.user) {
       window.location.href = "/";
     } 
 
     else {
       console.log("I have a cookie, so I can access this page");
-      //this.getUpcomingAppts();
-      //this.getPastAppts();
     } 
   }
 
@@ -86,9 +64,8 @@ class ApptForm extends Component {
     //else if all input values are not empty
     else if (this.state.apptName && this.state.apptDate && this.state.apptTime && this.state.apptNotification && this.state.apptNotificationNumber  ) {
       console.log("I am now about to create my appointment");
-      const temp_id = "5a23883a41d27f3b35bc740a";
 
-      API.saveUserAppointment( temp_id,{
+      API.saveUserAppointment(this.props.user._id, {
         appointmentName : this.state.apptName,
         date : this.state.apptDate,
         time : this.state.apptTime,
@@ -111,17 +88,13 @@ class ApptForm extends Component {
   
   render() {
     console.log(this.state);
-    //console.log(Cookies2.getJSON("user.firstName"));
-    //console.log(Cookies2.getJSON("user.mobileNumber"));
-    //console.log(this.state.userCookie.firstName);
-    //console.log(this.state.userCookie.mobileNumber);
     return(
       <div className="container">
         <div className="row">
           <div className="col-md-5">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">{`Greetings ${this.state.userCookie.firstName}, let's set up your notification(s)`}</h3>
+                <h3 class="panel-title">{`Greetings ${this.props.user.firstName}, let's set up your notification(s)`}</h3>
               </div>
               <div class="panel-body">
                 <div class="form">

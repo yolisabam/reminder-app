@@ -4,26 +4,25 @@ import "./User.css";
 import NavBar from "../../Components/NavBar";
 import ApptForm from "../../Components/ApptForm";
 import SimpleForm from "../../Components/Map"
-import PresentWell from "../../Components/present-well"
-class User extends Component {
-  state = {
+import PresentWell from "../../Components/PresentWell"
+import Cookies2 from "js-cookie";
 
-  };
+class User extends Component {
 
   render() {
+    const user = Cookies2.getJSON('user');
     return (
       <div class="container">
         <NavBar />
-          <div>
-
-            <Hero backgroundImage="https://images.crutchfieldonline.com/ImageHandler/scale/978/978/products/2014/41/158/x158NWZA17S-o_lifestyle.jpg">
-                <h1>Welcome to the User Page!</h1>
-                <h2>You will see and set up your appointments in this page</h2>
-                <ApptForm />
-                <SimpleForm />
-            </Hero>
-          </div>
-        {/* <PresentWell /> */}
+        <div>
+          <Hero backgroundImage="https://images.crutchfieldonline.com/ImageHandler/scale/978/978/products/2014/41/158/x158NWZA17S-o_lifestyle.jpg">
+              <h1>Welcome to the User Page!</h1>
+              <h2>You will see and set up your appointments in this page</h2>
+              <ApptForm user={user} />
+              <SimpleForm />
+          </Hero>
+        </div>
+        <PresentWell user={user} />
         <br></br>
         <br></br>
         <hr></hr>
