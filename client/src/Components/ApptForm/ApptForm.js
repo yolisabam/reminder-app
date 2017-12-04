@@ -17,10 +17,22 @@ class ApptForm extends Component {
   };
 
   componentWillMount() {
-    const { user } = this.props;
+    const {
+      user, 
+      apptName,
+      apptDate,
+      apptTime,
+      apptNotification,
+      apptNotificationNumber
+    } = this.props;
+
     //set the user cookie state
     this.setState({ 
-      apptNotificationNumber : user.mobileNumber
+      apptName: apptName || '',
+      apptDate: apptDate || '',
+      apptTime: apptTime || '',
+      apptNotification: apptNotification || '',
+      apptNotificationNumber: apptNotificationNumber || user.mobileNumber
     });
   }
 
@@ -63,26 +75,52 @@ class ApptForm extends Component {
     } 
     //else if all input values are not empty
     else if (this.state.apptName && this.state.apptDate && this.state.apptTime && this.state.apptNotification && this.state.apptNotificationNumber  ) {
-      console.log("I am now about to create my appointment");
 
-      API.saveUserAppointment(this.props.user._id, {
-        appointmentName : this.state.apptName,
-        date : this.state.apptDate,
-        time : this.state.apptTime,
-        appointmentNumber : this.state.apptNotificationNumber,
-        notification : this.state.apptNotification
-      })
-      .then(res => {
-        console.log(res);
-        //empty out the input elements
-        this.setState({
-          apptName : "",
-          apptDate : "",
-          apptTime : "",
-          apptNumber : ""
-        });
-      })
-      .catch(err => console.log(err))
+      if (this.props.apptId) {
+        console.log("I am now about to update my appointment");
+        API.updateUserAppointment(this.props.user._id, this.props.apptId, {
+          appointmentName: this.state.apptName,
+          date: this.state.apptDate,
+          time: this.state.apptTime,
+          appointmentNumber: this.state.apptNotificationNumber,
+          notification: this.state.apptNotification
+        })
+          .then(res => {
+            console.log(res);
+            //empty out the input elements
+            this.setState({
+              apptName: "",
+              apptDate: "",
+              apptTime: "",
+              apptNumber: ""
+            });
+            console.log(this.props.handleSubmit);
+            this.props.handleSubmit && this.props.handleSubmit();
+          })
+          .catch(err => console.log(err))
+      } else {
+        console.log("I am now about to create my appointment");
+        API.saveUserAppointment(this.props.user._id, {
+          appointmentName: this.state.apptName,
+          date: this.state.apptDate,
+          time: this.state.apptTime,
+          appointmentNumber: this.state.apptNotificationNumber,
+          notification: this.state.apptNotification
+        })
+          .then(res => {
+            console.log(res);
+            //empty out the input elements
+            this.setState({
+              apptName: "",
+              apptDate: "",
+              apptTime: "",
+              apptNumber: ""
+            });
+
+            this.props.handleSubmit && this.props.handleSubmit();
+          })
+          .catch(err => console.log(err))
+      } 
     }
   };
   

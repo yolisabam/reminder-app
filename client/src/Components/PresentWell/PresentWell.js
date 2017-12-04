@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import Modal from 'react-modal';
 import API from "../../Utils/api";
+import ApptForm from "../ApptForm";
 
 const Appointment = ({ appt, handleUpdate, handleDelete }) => (
   <div className="panel-body">
@@ -19,7 +21,14 @@ const Appointment = ({ appt, handleUpdate, handleDelete }) => (
 
 class PresentWell extends Component {
   state = {
-    appointments: []
+    apptId: '',
+    apptName: '',
+    apptDate: '',
+    apptTime: '',
+    apptNotification: '',
+    apptNotificationNumber: '',
+    appointments: [],
+    isModalOpen: false,
   };
 
   componentWillMount() {
@@ -35,10 +44,41 @@ class PresentWell extends Component {
   }
 
   handleUpdate = (appt) => {
+    this.setState({
+      apptId: appt._id,
+      apptName: appt.appointmentName,
+      apptDate: appt.date,
+      apptTime: appt.time,
+      apptNotification: appt.notification,
+      apptNotificationNumber: appt.appointmentNumber,
+      isModalOpen: true
+    });
+  }
 
+  onUpdateAppointment = () => {
+    this.setState({
+      apptId: '',
+      apptName: '',
+      apptDate: '',
+      apptTime: '',
+      apptNotification: '',
+      apptNotificationNumber: '',
+      isModalOpen: false
+    });
+    this.loadAppointments();
+
+    console.log('onupdate appointment')
   }
 
   render() {
+    const { user } = this.props;
+    const {
+      apptId,
+      apptName,
+      apptDate,
+      apptTime,
+      apptNotification,
+      apptNotificationNumber } = this.state;
     const upcomingAppts = this.getUpcomingAppointments();
     const pastAppts = this.getPastAppointments();
     return (
@@ -62,6 +102,16 @@ class PresentWell extends Component {
               handleDelete={this.handleDelete} />
           )}
         </div>
+        <Modal isOpen={this.state.isModalOpen}>
+          <ApptForm user={user}
+            apptId={apptId}
+            apptName={apptName}
+            apptDate={apptDate}
+            apptTime={apptTime}
+            apptNotification={apptNotification}
+            apptNotificationNumber={apptNotificationNumber}
+            handleSubmit={this.onUpdateAppointment} />
+        </Modal>
       </div>
     );
   }

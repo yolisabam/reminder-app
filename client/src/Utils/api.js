@@ -19,9 +19,9 @@ export default {
   saveUserAppointment : function(userId, apptData) {
     return axios.post(`/api/user/${userId}/appt`, apptData);
   },
-  //update an appointment for the current user
-  updateUserAppointment : function(userId, apptId) {
-    return axios.put(`/api/user/${userId}/appt/${apptId}`);
+  // update appointment
+  updateUserAppointment: function (userId, apptId, apptData) {
+    return axios.put(`/api/user/${userId}/appt/${apptId}`, apptData);
   },
   //delete an appointment for the current user
   deleteUserAppointment : function(userId, apptId) {
