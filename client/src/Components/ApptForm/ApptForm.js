@@ -105,8 +105,8 @@ class ApptForm extends Component {
           apptName : "",
           apptDate : "",
           // apptTime : "",
-          apptNotification : "",
-          apptNotificationNumber : "",
+          apptNotification : ""
+          //apptNotificationNumber : "",
         });
       })
       .catch(err => console.log(err))
