@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "./LoginForm.css";
 import API from "../../Utils/api";
 import Modal from 'react-modal';
+import Cookies2 from "js-cookie";
 
 class LoginForm extends Component {
   state = {
@@ -21,6 +21,7 @@ class LoginForm extends Component {
     signUpEmail : "",
     signUpPassword : "",
     signUpPhone : "",
+    emailValidation : "",
     //states to aid validating new user input values
     isSignUpFirstNameEmpty : false,
     isSignUpLastNameEmpty : false,
@@ -33,13 +34,29 @@ class LoginForm extends Component {
     isSubmitButtonPressed : false,
 
     //open/close state for the modal
-    modalIsOpen : false
+    modalIsOpen : false,
+
+    //state for user Cookie
+    userCookie : ""
+
   };
 
   emailValidate(email) {
     // if email doesn't exist, let it pass
     // otherwise, check if email is valid
     return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
+  }
+
+  componentWillMount() {
+    //when the component mounts and sees that there is a cookie for your login credential, you are redirected to the user page
+    //const Cookies2 = Cookies.noConflict();
+    this.setState({ userCookie : Cookies2.get('user') });
+  }
+
+  componentDidMount() {
+    if(this.state.userCookie) {
+      window.location.href = "/user" //: window.location.href = "/"
+    }
   }
 
   openModal() {
@@ -51,6 +68,7 @@ class LoginForm extends Component {
   }
 
   handleInputChange = event => {
+    //update the state for every key stroke inside the input elements
     const { name, value } = event.target;
     this.setState({
       [name] : value.trim()
@@ -73,6 +91,8 @@ class LoginForm extends Component {
       (stateElement.input) ? this.setState({[stateElement.validation] : false}) : this.setState({[stateElement.validation] : true})
     });
 
+        
+    // const emailValidation = /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     //if all client-side input validations pass
     if (this.state.loginEmail && this.state.loginPassword) {
       //send a request to the server for the provided user login credentials
@@ -86,6 +106,7 @@ class LoginForm extends Component {
         if (res.data.isValidEmail && res.data.isValidPassword) {
           //submit a GET request for "/home"
           //axios.get("/user");
+          Cookies2.set('user', res.data.userInfo);
           window.location.href = "/user";
         } 
         //else if email provided isn't in the db
@@ -110,7 +131,6 @@ class LoginForm extends Component {
   handleSignupFormSubmit = event => {
     //prevent page from refreshing by default
     event.preventDefault();
-
     console.log("I clicked the save new user button");
 
     const {
@@ -159,7 +179,7 @@ class LoginForm extends Component {
   };
 
   render() {
-    //console.log(this.state);
+    console.log(this.state);
     return (
       <div>
         {/* Sign Up Form */}
@@ -277,7 +297,7 @@ class LoginForm extends Component {
         {/* Login Form */}
         <div className="panel panel-info">
           <div className="panel-body">
-            <form role="form" className="form-horizontal">  
+            <form className="form-horizontal">  
               <div className="form-group">
                 {/* <label>Test</label>
                 <div className="col-sm-6">
@@ -344,7 +364,7 @@ class LoginForm extends Component {
                     onClick={this.handleLoginFormSubmit}
                     >Sign in</button>
                   <hr></hr>
-                  <p id="need-acct">Need an account?<span><a href="#" id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
+                  <p id="need-acct">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
                 </div>
               </div>
             </form>    

@@ -29,7 +29,7 @@ module.exports = {
               res.json({
                 isValidEmail : true,
                 isValidPassword : true,
-                userId : dbUser._id
+                userInfo : dbUser
               });
             } else {
               res.json({isValidPassword : false});
