@@ -3,10 +3,11 @@ const moment = require('moment');
 const Twilio = require('twilio');
 const config = require('../config')
 
-const Schema = mongoose.Schema;
-
-
-const appointmentSchema = new Schema({
+const appointmentSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   appointmentName: {
     type: String,
     required: true
@@ -81,4 +82,3 @@ appointmentSchema.statics.sendNotifications = function(cb) {
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);
 module.exports = Appointment;
-

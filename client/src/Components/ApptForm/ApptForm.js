@@ -4,13 +4,12 @@ import "./ApptForm.css";
 import Cookies2 from "js-cookie";
 import DatePicker from "react-datepicker";
 import moment from "moment";
-
 //css for date picker
 import 'react-datepicker/dist/react-datepicker.css';
 
+
 class ApptForm extends Component {
   state = {
-    userId : "",
     apptName : "",
     apptDate : moment(),
     // apptTime : "",
@@ -20,45 +19,37 @@ class ApptForm extends Component {
     isApptNotificationNumberEmpty : false,
     isApptNotificationEmpty : false,
     isApptDateEmpty : false,
-    isApptTimeEmpty : false,
-    upcomingAppts : [],
-    pastAppts : [],
-    userCookie : ""
+    isApptTimeEmpty : false
   };
 
-  getUpcomingAppts() {
-
-  }
-
-  getPastAppts() {
-
-  }
-
   componentWillMount() {
+    const {
+      user, 
+      apptName,
+      apptDate,
+      apptTime,
+      apptNotification,
+      apptNotificationNumber
+    } = this.props;
+
     //set the user cookie state
-    this.setState(
-      { userCookie : Cookies2.getJSON('user'),
-        apptNotificationNumber : Cookies2.getJSON('user').mobileNumber
+    this.setState({ 
+      apptName: apptName || '',
+      apptDate: apptDate || '',
+      apptTime: apptTime || '',
+      apptNotification: apptNotification || '',
+      apptNotificationNumber: apptNotificationNumber || user.mobileNumber
     });
   }
 
-  // componentWillMount() {
-  //   //set the user cookie state
-  //    if(!Cookies2.get('user')) {
-  //     window.location.href = "/";
-  //   } 
-  // }
-
   componentDidMount() {
     //if there is no user cookie, reroute to the login page
-    if( !this.state.userCookie) {
+    if(!this.props.user) {
       window.location.href = "/";
     } 
 
     else {
       console.log("I have a cookie, so I can access this page");
-      //this.getUpcomingAppts();
-      //this.getPastAppts();
     } 
   }
 
@@ -66,7 +57,7 @@ class ApptForm extends Component {
     //update the state for every key stroke inside the input elements
     const { name , value } = event.target;
     this.setState({
-      [name] : value.trim()
+      [name] : value
     });
   };
 
@@ -109,7 +100,52 @@ class ApptForm extends Component {
           //apptNotificationNumber : "",
         });
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+    // else if (this.state.apptName && this.state.apptDate && this.state.apptTime && this.state.apptNotification && this.state.apptNotificationNumber  ) {
+
+    //   if (this.props.apptId) {
+    //     console.log("I am now about to update my appointment");
+    //     API.updateUserAppointment(this.props.user._id, this.props.apptId, {
+    //       appointmentName: this.state.apptName,
+    //       date: this.state.apptDate,
+    //       time: this.state.apptTime,
+    //       appointmentNumber: this.state.apptNotificationNumber,
+    //       notification: this.state.apptNotification
+    //     })
+    //       .then(res => {
+    //         //empty out the input elements
+    //         this.setState({
+    //           apptName: "",
+    //           apptDate: "",
+    //           apptTime: "",
+    //           apptNumber: ""
+    //         });
+
+    //         this.props.handleSubmit && this.props.handleSubmit();
+    //       })
+    //       .catch(err => console.log(err))
+    //   } else {
+    //     console.log("I am now about to create my appointment");
+    //     API.saveUserAppointment(this.props.user._id, {
+    //       appointmentName: this.state.apptName,
+    //       date: this.state.apptDate,
+    //       time: this.state.apptTime,
+    //       appointmentNumber: this.state.apptNotificationNumber,
+    //       notification: this.state.apptNotification
+    //     })
+    //       .then(res => {
+    //         //empty out the input elements
+    //         this.setState({
+    //           apptName: "",
+    //           apptDate: "",
+    //           apptTime: "",
+    //           apptNumber: ""
+    //         });
+
+    //         this.props.handleSubmit && this.props.handleSubmit();
+    //       })
+    //       .catch(err => console.log(err))
+    //   } 
     }
   };
 
@@ -123,13 +159,14 @@ class ApptForm extends Component {
   render() {
     console.log(this.state);
     //console.log(this.state.apptDate.format('LLL'));  
-    return(
+
+    return (
       <div className="container">
         <div className="row">
           <div className="col-md-5">
             <div className="panel panel-default">
               <div className="panel-heading">
-                <h3 className="panel-title">{`Greetings ${this.state.userCookie.firstName}, let's set up your notification(s)`}</h3>
+                <h3 className="panel-title">{`Greetings ${this.props.user.firstName}, let's set up your notification(s)`}</h3>
               </div>
               <div className="panel-body">
                 <form className="form-horizontal"> 
@@ -152,17 +189,6 @@ class ApptForm extends Component {
                   </div>
                   <br></br>
                   <div className="form-group">
-                    {/*}
-                    <input 
-                      name="apptDate"
-                      value={this.state.apptDate}
-                      onChange={this.handleInputChange}
-                      type="text" 
-                      id="date" 
-                      className="form-control" 
-                      placeholder="date">
-                    </input>
-                    */}
                     <label className="control-label col-sm-5" for="appt-date">Appointment Date</label>
                     <div className="col-sm-7">  
                       <DatePicker
@@ -179,26 +205,6 @@ class ApptForm extends Component {
                     </div>
                   </div>
                   <br></br>
-                  {/*
-                  <div className="form-group">
-                    <label className="control-label col-sm-4" for="appt-time">Appointment Time</label>
-                    <div className="col-sm-8">
-                      <input 
-                        name="apptTime"
-                        value={this.state.apptTime}
-                        onChange={this.handleInputChange}
-                        type="text" 
-                        id="appt-time" 
-                        className="form-control" 
-                        placeholder="time">
-                      </input>
-                    </div>  
-                    <div id="error-appt-time-left-empty" className={!this.state.isApptTimeEmpty ? "error-div-appt-time invisible" : "error-div-appt-time"}>
-                      <p className="error text-center">Please provide your appointment time!</p>
-                    </div>
-                  </div>
-                  <br></br>
-                  */}
                   <div className="form-group">
                     <label className="control-label col-sm-5" for="appt-notif-num">Mobile Number</label>
                     <div className="col-sm-7">
@@ -234,7 +240,6 @@ class ApptForm extends Component {
                       <p className="error text-center">Please provide your notification schedule!</p>
                     </div>
                     <br></br>
-                    {/*<div className="modal-footer">*/}
                     <hr></hr>
                     <button 
                       type="submit" 
@@ -242,15 +247,14 @@ class ApptForm extends Component {
                       id="appt-submit"
                       onClick={this.handleFormSubmit}
                     >Submit</button>
-                    {/*</div>*/}
                   </div>
                 </form>    
               </div>
             </div>
           </div>
         </div>
-      </div>
-      )
+      </div>   
+    )
   }
 }
 
