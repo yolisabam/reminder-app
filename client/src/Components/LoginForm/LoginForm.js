@@ -31,8 +31,6 @@ class LoginForm extends Component {
     isEmailUnique : true,
     isEmailValid : true,
 
-    isSubmitButtonPressed : false,
-
     //open/close state for the modal
     modalIsOpen : false,
 
@@ -44,7 +42,7 @@ class LoginForm extends Component {
   emailValidate(email) {
     // if email doesn't exist, let it pass
     // otherwise, check if email is valid
-    return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
+    return /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
   }
 
   componentWillMount() {
@@ -59,11 +57,11 @@ class LoginForm extends Component {
     }
   }
 
-  openModal() {
+  openModal = () => {
     this.setState({ modalIsOpen: true });
   }
 
-  closeModal() {
+  closeModal = () => {
     this.setState({ modalIsOpen: false });
   }
 
@@ -79,7 +77,7 @@ class LoginForm extends Component {
     //prevent page from refreshing by default
     event.preventDefault();
 
-    this.state.isSubmitButtonPressed = true;
+    const newState = {};
 
     //assign the input value and validation states in this array of objects
     const loginUserStates = [
@@ -87,10 +85,12 @@ class LoginForm extends Component {
       { input : this.state.loginPassword, validation : "isLoginPasswordEmpty" }
     ];
 
-    loginUserStates.forEach(stateElement => {
-      (stateElement.input) ? this.setState({[stateElement.validation] : false}) : this.setState({[stateElement.validation] : true})
+    loginUserStates.forEach(({input, validation}) => {
+      const inputExist = !!input;
+      newState[validation] = !inputExist;
     });
 
+    this.setState(newState);
         
     // const emailValidation = /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     //if all client-side input validations pass
@@ -101,7 +101,7 @@ class LoginForm extends Component {
         password : this.state.loginPassword
       })
       .then(res => {
-        console.log(res);
+        console.log('res', res);
         //if email and password are valid
         if (res.data.isValidEmail && res.data.isValidPassword) {
           //submit a GET request for "/home"
@@ -151,7 +151,8 @@ class LoginForm extends Component {
       { input : signUpPhone, validation : "isSignUpPhoneEmpty"}
     ];
 
-    this.state.isEmailValid = !signUpEmail || this.emailValidate(signUpEmail);
+    this.setState({ isEmailValid: !signUpEmail || this.emailValidate(signUpEmail) });
+
     //if any of the input values are empty
     if (!signUpFirstName || !signUpLastName || !signUpEmail || !signUpPassword || !signUpPhone) {
       //set the validation states to their appropriate values
@@ -171,15 +172,20 @@ class LoginForm extends Component {
         mobileNumber : signUpPhone
       })
       .then(res => {
-        console.log(res);
-        (res.data.isEmailUnique) ? this.closeModal() : this.setState({ isEmailUnique : false })
+        console.log('res', res);
+
+        if (res.data.isEmailUnique) {
+          this.closeModal();
+        } else {
+          this.setState({ isEmailUnique: false });
+        }
       })
       .catch(err => console.log(err));
     }
   };
 
   render() {
-    console.log(this.state);
+    console.log('state before render', this.state);
     return (
       <div>
         {/* Sign Up Form */}
@@ -198,9 +204,9 @@ class LoginForm extends Component {
                   value={this.state.signUpFirstName}
                   name="signUpFirstName"
                   onChange={this.handleInputChange}
-                  type="text" 
-                  className="form-control" 
-                  placeholder="first name" 
+                  type="text"
+                  className="form-control"
+                  placeholder="first name"
                   aria-describedby="basic-addon1">
                 </input>
                 <div id="error-first-name-left-empty" className={!this.state.isSignUpFirstNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
@@ -316,7 +322,7 @@ class LoginForm extends Component {
                   }
                 </div> */}
 
-                <label for="inputUserName" className="col-sm-4 control-label">Email</label>
+                <label htmlFor="inputUserName" className="col-sm-4 control-label">Email</label>
                 <div className="col-sm-6">
                   <input 
                     value={this.state.loginEmail}
@@ -336,7 +342,7 @@ class LoginForm extends Component {
                 </div>
               </div>
               <div className="form-group">
-                <label for="inputPassword" className="col-sm-4 control-label">Password</label>
+                <label htmlFor="inputPassword" className="col-sm-4 control-label">Password</label>
                 <div className="col-sm-6">
                   <input  
                     value={this.state.loginPassword}
