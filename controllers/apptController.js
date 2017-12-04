@@ -5,7 +5,7 @@ const db = require("../models");
 module.exports = {
   get: function(req, res) {
     const userid = req.param('id');
-    db.Appointment.findAll(userid)
+    db.Appointment.find(userid)
       .then(dbAppt => 
         res.json(dbAppt)
       );
