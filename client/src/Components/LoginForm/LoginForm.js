@@ -268,7 +268,7 @@ class LoginForm extends Component {
           <div className="panel-body">
             <form className="form-horizontal">  
               <div className="form-group">
-                <label for="inputUserName" className="col-sm-4 control-label">Email</label>
+                <label for="input-email" className="col-sm-4 control-label">Email</label>
                 <div className="col-sm-6">
                   <input 
                     value={this.state.loginEmail}
@@ -288,7 +288,7 @@ class LoginForm extends Component {
                 </div>
               </div>
               <div className="form-group">
-                <label for="inputPassword" className="col-sm-4 control-label">Password</label>
+                <label for="input-password" className="col-sm-4 control-label">Password</label>
                 <div className="col-sm-6">
                   <input  
                     value={this.state.loginPassword}
