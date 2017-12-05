@@ -209,10 +209,13 @@ class LoginForm extends Component {
                   placeholder="first name"
                   aria-describedby="basic-addon1">
                 </input>
+              </div>
+
+              {this.state.isSignUpFirstNameEmpty &&
                 <div id="error-first-name-left-empty" className={!this.state.isSignUpFirstNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
                   <p className="error text-center">Please provide your first name!</p>
                 </div>
-              </div>
+              }
               <br></br>
               <div className="input-group">
                 <span className="input-group-addon" id="basic-addon1">Last Name</span>
@@ -225,10 +228,12 @@ class LoginForm extends Component {
                   placeholder="last name" 
                   aria-describedby="basic-addon1">
                 </input>
+              </div> 
+              {this.state.isSignUpLastNameEmpty &&
                 <div id="error-last-name-left-empty" className={!this.state.isSignUpLastNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
                   <p className="error text-center">Please provide your last name!</p>
                 </div>
-              </div>
+              } 
               <br></br>
               <div className="input-group">
                 <span className="input-group-addon" id="basic-addon1">Email</span>
@@ -257,20 +262,23 @@ class LoginForm extends Component {
                 </div>
               }
               <br></br>
-              <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Password</span>
-                <input 
-                  value={this.state.signUpPassword}
-                  name="signUpPassword"
-                  onChange={this.handleInputChange}
-                  type="password" 
-                  className="form-control" 
-                  placeholder="password" 
-                  aria-describedby="basic-addon1"></input>
-                <div id="error-password-left-empty" className={!this.state.isSignUpPasswordEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">Please provide your password!</p>
-                </div>  
-              </div>
+                <div className="input-group">
+                  <span className="input-group-addon" id="basic-addon1">Password</span>
+                  <input 
+                    value={this.state.signUpPassword}
+                    name="signUpPassword"
+                    onChange={this.handleInputChange}
+                    type="password" 
+                    className="form-control" 
+                    placeholder="password" 
+                    aria-describedby="basic-addon1"></input>
+                </div>
+                {this.state.isSignUpPasswordEmpty &&
+                  <div id="error-password-left-empty" className={!this.state.isSignUpPasswordEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                    <p className="error text-center">Please provide your password!</p>
+                  </div>  
+                }  
+              
               <br></br>
               <div className="input-group">
                 <span className="input-group-addon" id="basic-addon1">Mobile Number</span>
@@ -280,13 +288,16 @@ class LoginForm extends Component {
                   onChange={this.handleInputChange}
                   type="phonenumber" 
                   className="form-control" 
-                  placeholder="1234567899" 
+                  placeholder="123-456-7899" 
                   aria-describedby="basic-addon1"></input>
-                <div id="error-phone-left-empty" className={!this.state.isSignUpPhoneEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">Please provide your mobile number!</p>
-                </div>
               </div>
+                {this.state.isSignUpPhoneEmpty &&
+                  <div id="error-phone-left-empty" className={!this.state.isSignUpPhoneEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                    <p className="error text-center">Please provide your mobile number!</p>
+                  </div>
+                }   
             </div>
+
             <div className="modal-footer">
               <button 
                 type="submit" 
@@ -305,7 +316,6 @@ class LoginForm extends Component {
           <div className="panel-body">
             <form className="form-horizontal">  
               <div className="form-group">
-                <label htmlFor="input-email" className="col-sm-4 control-label">Email</label>
                 {/* <label>Test</label>
                 <div className="col-sm-6">
                   <input
@@ -322,6 +332,8 @@ class LoginForm extends Component {
                   <p>Invalid Email Message</p>
                   }
                 </div> */}
+
+                <label htmlFor="inputUserName" className="col-sm-4 control-label">Email</label>
                 <div className="col-sm-6">
                   <input 
                     value={this.state.loginEmail}
@@ -341,7 +353,7 @@ class LoginForm extends Component {
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="input-password" className="col-sm-4 control-label">Password</label>
+                <label htmlFor="inputPassword" className="col-sm-4 control-label">Password</label>
                 <div className="col-sm-6">
                   <input  
                     value={this.state.loginPassword}
