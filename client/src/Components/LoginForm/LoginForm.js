@@ -306,22 +306,6 @@ class LoginForm extends Component {
             <form className="form-horizontal">  
               <div className="form-group">
                 <label htmlFor="input-email" className="col-sm-4 control-label">Email</label>
-                {/* <label>Test</label>
-                <div className="col-sm-6">
-                  <input
-                    ref={(input) => { this.testInput = input; }}
-                    value={this.state.testInput}
-                    name="loginTest"
-                    required
-                    type="email"
-                    pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                    className="form-control"
-                    id="input-test"
-                    placeholder="test"/>
-                  {this.state.isSubmitButtonPressed && this.testInput.validity.patternMismatch &&
-                  <p>Invalid Email Message</p>
-                  }
-                </div> */}
                 <div className="col-sm-6">
                   <input 
                     value={this.state.loginEmail}
