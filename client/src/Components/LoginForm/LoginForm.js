@@ -263,7 +263,7 @@ class LoginForm extends Component {
               }
               <br></br>
                 <div className="input-group">
-                  <span className="input-group-addon" id="basic-addon1">Password</span>
+                  <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Password</span>
                   <input 
                     value={this.state.signUpPassword}
                     name="signUpPassword"
@@ -332,7 +332,7 @@ class LoginForm extends Component {
                   {this.state.isSubmitButtonPressed && this.testInput.validity.patternMismatch &&
                   <p>Invalid Email Message</p>
                   }
-                </div> */}
+                </div> 
 
                 <label htmlFor="inputUserName" className="col-sm-4 control-label">Email</label>
                 <div className="col-sm-6">
@@ -387,7 +387,7 @@ class LoginForm extends Component {
               </div>
             </form>    
           </div>
-        </div>
+        </div>*/}
 
 
       {/*sample 2*/}
