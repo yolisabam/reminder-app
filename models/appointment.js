@@ -45,6 +45,7 @@ appointmentSchema.methods.requiresNotification = function(date) {
 
 appointmentSchema.statics.sendNotifications = function(cb) {
   const searchDate = new Date();
+  console.log('searchDate : ' + searchDate);
   Appointment
     .find()
     .then(function(appointments) {
@@ -52,7 +53,13 @@ appointmentSchema.statics.sendNotifications = function(cb) {
         return appointment.requiresNotification(searchDate);
       });
       if (appointments.length > 0) {
-        sendNotifications(appointment);
+        console.log("I FOUND AN APPOINTMENT!!!");
+        sendNotifications(appointments);
+      } else {
+        console.log("duration");
+        console.log(Math.round(moment.duration(moment("2017-12-05T07:53:41.095Z").utc()
+                          .diff(moment(searchDate).utc())
+                          ).asMinutes()));
       }
     });
 
