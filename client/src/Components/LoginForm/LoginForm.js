@@ -199,7 +199,7 @@ class LoginForm extends Component {
             </div>
             <div className="modal-body">
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">First Name </span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">First Name </span>
                 <input 
                   value={this.state.signUpFirstName}
                   name="signUpFirstName"
@@ -209,13 +209,16 @@ class LoginForm extends Component {
                   placeholder="first name"
                   aria-describedby="basic-addon1">
                 </input>
+              </div>
+
+              {this.state.isSignUpFirstNameEmpty &&
                 <div id="error-first-name-left-empty" className={!this.state.isSignUpFirstNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
                   <p className="error text-center">Please provide your first name!</p>
                 </div>
-              </div>
+              }
               <br></br>
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Last Name</span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Last Name</span>
                 <input 
                   value={this.state.signUpLastName}
                   name="signUpLastName"
@@ -225,13 +228,15 @@ class LoginForm extends Component {
                   placeholder="last name" 
                   aria-describedby="basic-addon1">
                 </input>
+              </div> 
+              {this.state.isSignUpLastNameEmpty &&
                 <div id="error-last-name-left-empty" className={!this.state.isSignUpLastNameEmpty ? "error-div-signup invisible" : "error-div-signup"}>
                   <p className="error text-center">Please provide your last name!</p>
                 </div>
-              </div>
+              } 
               <br></br>
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Email</span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Email</span>
                 <input 
                   value={this.state.signUpEmail}
                   name="signUpEmail"
@@ -257,36 +262,42 @@ class LoginForm extends Component {
                 </div>
               }
               <br></br>
-              <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Password</span>
-                <input 
-                  value={this.state.signUpPassword}
-                  name="signUpPassword"
-                  onChange={this.handleInputChange}
-                  type="password" 
-                  className="form-control" 
-                  placeholder="password" 
-                  aria-describedby="basic-addon1"></input>
-                <div id="error-password-left-empty" className={!this.state.isSignUpPasswordEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">Please provide your password!</p>
-                </div>  
-              </div>
+                <div className="input-group">
+                  <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Password</span>
+                  <input 
+                    value={this.state.signUpPassword}
+                    name="signUpPassword"
+                    onChange={this.handleInputChange}
+                    type="password" 
+                    className="form-control" 
+                    placeholder="password" 
+                    aria-describedby="basic-addon1"></input>
+                </div>
+                {this.state.isSignUpPasswordEmpty &&
+                  <div id="error-password-left-empty" className={!this.state.isSignUpPasswordEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                    <p className="error text-center">Please provide your password!</p>
+                  </div>  
+                }  
+              
               <br></br>
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Mobile Number</span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Mobile Number</span>
                 <input 
                   value={this.state.signUpPhone}
                   name="signUpPhone"
                   onChange={this.handleInputChange}
                   type="phonenumber" 
                   className="form-control" 
-                  placeholder="1234567899" 
+                  placeholder="123-456-7899" 
                   aria-describedby="basic-addon1"></input>
-                <div id="error-phone-left-empty" className={!this.state.isSignUpPhoneEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">Please provide your mobile number!</p>
-                </div>
               </div>
+                {this.state.isSignUpPhoneEmpty &&
+                  <div id="error-phone-left-empty" className={!this.state.isSignUpPhoneEmpty ? "error-div-signup invisible" : "error-div-signup"}>
+                    <p className="error text-center">Please provide your mobile number!</p>
+                  </div>
+                }   
             </div>
+
             <div className="modal-footer">
               <button 
                 type="submit" 
@@ -301,11 +312,33 @@ class LoginForm extends Component {
           </div>
         </Modal>
         {/* Login Form */}
-        <div className="panel panel-info">
+        {/*<div className="panel panel-info">
           <div className="panel-body">
             <form className="form-horizontal">  
               <div className="form-group">
+<<<<<<< HEAD
                 <label htmlFor="input-email" className="col-sm-4 control-label">Email</label>
+=======
+                <label htmlFor="input-email" className="col-sm-4 control-label animated bounceInLeft">Email</label>
+                 <label>Test</label>
+                <div className="col-sm-6">
+                  <input
+                    ref={(input) => { this.testInput = input; }}
+                    value={this.state.testInput}
+                    name="loginTest"
+                    required
+                    type="email"
+                    pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
+                    className="form-control"
+                    id="input-test"
+                    placeholder="test"/>
+                  {this.state.isSubmitButtonPressed && this.testInput.validity.patternMismatch &&
+                  <p>Invalid Email Message</p>
+                  }
+                </div> 
+
+                <label htmlFor="inputUserName" className="col-sm-4 control-label">Email</label>
+>>>>>>> master
                 <div className="col-sm-6">
                   <input 
                     value={this.state.loginEmail}
@@ -325,7 +358,7 @@ class LoginForm extends Component {
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="input-password" className="col-sm-4 control-label">Password</label>
+                <label htmlFor="input-password" className="col-sm-4 control-label animated bounceInLeft">Password</label>
                 <div className="col-sm-6">
                   <input  
                     value={this.state.loginPassword}
@@ -358,7 +391,24 @@ class LoginForm extends Component {
               </div>
             </form>    
           </div>
+        </div>*/}
+
+
+      {/*sample 2*/}
+      <header>Log In</header>
+
+      <form id="form" className="topBefore">
+          
+        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" ></input>
+        <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password"></input>
+        <input id="submit" type="submit" value="Sign In!" onClick={this.handleLoginFormSubmit}></input>
+      </form>
+        <div className="col-sm-offset-2 col-sm-5">
+          <hr></hr>
+          <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
         </div>
+      {/*sample 2*/}
+
       </div>
     );
   }
