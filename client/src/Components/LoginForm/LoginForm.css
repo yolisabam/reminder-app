@@ -108,3 +108,7 @@ textarea:hover {
 #submit:hover {
   color: #e2dedb;
 }
+
+.ReactModal__Content:focus {
+  outline : 0;
+}
