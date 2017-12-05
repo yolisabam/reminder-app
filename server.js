@@ -7,6 +7,8 @@ const app = express();
 const router = require("express").Router();
 const PORT = process.env.PORT || 3001;
 
+const scheduler = require("./scheduler");
+
 //configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -39,6 +41,9 @@ db.on("error", function(err) {
 db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
+
+//run the appointment notification scheduler
+scheduler.start();
 
 // Start the API server
 app.listen(PORT, function() {

@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import API from "../../Utils/api";
 import "./ApptForm.css";
-import Cookies2 from "js-cookie";
+//import Cookies2 from "js-cookie";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 //css for date picker
 import 'react-datepicker/dist/react-datepicker.css';
+
+//css for react select
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 
 class ApptForm extends Component {
@@ -14,6 +18,7 @@ class ApptForm extends Component {
     //apptDate : moment(),
     apptTime : moment(),
     apptNotification : "",
+    apptNotificationLabel : "",
     apptNotificationNumber : "",
     isApptNameEmpty : false,
     isApptNotificationNumberEmpty : false,
@@ -27,7 +32,7 @@ class ApptForm extends Component {
       user, 
       apptName,
       //apptDate,
-      apptTime,
+      //apptTime,
       apptNotification,
       apptNotificationNumber
     } = this.props;
@@ -87,7 +92,8 @@ class ApptForm extends Component {
         //date : this.state.apptTime,
         time : this.state.apptTime,
         appointmentNumber : this.state.apptNotificationNumber,
-        notification : this.state.apptNotification
+        notification : this.state.apptNotification,
+        notificationLabel : this.state.apptNotificationLabel
       })
       .then(res => {
         console.log(res);
@@ -96,7 +102,8 @@ class ApptForm extends Component {
           apptName : "",
           //apptDate : moment(),
           apptTime : moment(),
-          apptNotification : ""
+          apptNotification : "",
+          apptNotificationLabel : ""
           //apptNotificationNumber : "",
         });
       })
@@ -156,12 +163,20 @@ class ApptForm extends Component {
     });
   };
   
+  handleNotificationChange = (selectedOption) => {
+    this.setState({ 
+      apptNotification : selectedOption.value, 
+      apptNotificationLabel : selectedOption.label
+    });
+    console.log(`Selected: ${selectedOption.label}`);
+  }
+
   render() {
     console.log(this.state);
     //console.log(this.state.apptDate.format('LLL'));  
 
     return (
-      <div className="container">
+      <div className="container float-left">
         <div className="row">
           <div className="col-md-5">
             <div className="panel panel-default">
@@ -226,6 +241,22 @@ class ApptForm extends Component {
                   <div className="form-group">
                     <label className="control-label col-sm-5" for="notif-sched">Notification Schedule</label>
                     <div className="col-sm-7">  
+                      <Select
+                        name="apptNotification"
+                        value={this.state.apptNotification}
+                        onChange={this.handleNotificationChange}
+                        options={[
+                          { value: '2880', label: '2 days' },
+                          { value: '1440', label: '1 day' },
+                          { value: '120', label: '2 hours' },
+                          { value: '30', label: '30 minutes' },
+                          { value: '5', label: '5 minutes' },
+                          { value: '2', label: '2 minutes' },
+                          { value: '1', label: '1 minute' }
+                        ]}
+                      />
+                      {/*}
+                      <NotificationChoices />
                       <input 
                         name="apptNotification"
                         value={this.state.apptNotification}
@@ -235,12 +266,11 @@ class ApptForm extends Component {
                         className="form-control" 
                         placeholder="Appointment Notification">
                       </input>
+                      */}
                     </div>  
                     <div id="error-appt-notification-left-empty" className={!this.state.isApptNotificationEmpty ? "error-div-appt-notification invisible" : "error-div-appt-notification"}>
                       <p className="error text-center">Please provide your notification schedule!</p>
                     </div>
-                    <br></br>
-                    <hr></hr>
                     <button 
                       type="submit" 
                       className="btn btn-default" 

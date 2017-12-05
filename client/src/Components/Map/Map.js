@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
-class SimpleForm extends React.Component {
+class SimpleForm extends Component {
   constructor(props) {
     super(props)
     this.state = { address: 'San Francisco, CA' }
@@ -24,11 +24,11 @@ class SimpleForm extends React.Component {
     }
 
     return (
-      <div className="col-md-6">
-      <form onSubmit={this.handleFormSubmit}>
-        <PlacesAutocomplete inputProps={inputProps} />
-        <button type="submit">Submit</button>
-      </form>
+      <div className="col-md-6 float-right">
+        <form onSubmit={this.handleFormSubmit}>
+          <PlacesAutocomplete inputProps={inputProps} />
+          <button type="submit">Submit</button>
+        </form>
       </div>
     )
   }

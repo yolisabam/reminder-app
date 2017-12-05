@@ -30,13 +30,17 @@ const appointmentSchema = new mongoose.Schema({
   notification: {
     type: Number,
     required: true
+  },
+  notificationLabel: {
+    type: String,
+    required: true
   }
 }); 
 
 appointmentSchema.methods.requiresNotification = function(date) {
-  return Math.round(moment.duration(moment(this.time))
-                          .diff(moment(date))
-                          .asMinutes()) === this.notification;
+  return Math.round(moment.duration(moment(this.time).utc()
+                          .diff(moment(date).utc())
+                          ).asMinutes()) === this.notification;
 };
 
 appointmentSchema.statics.sendNotifications = function(cb) {

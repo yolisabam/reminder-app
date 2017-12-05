@@ -20,11 +20,20 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },  
   get: function(req, res) {
-    const userid = req.param('userid');
-    db.Appointment.find({ user: userid })
-      .then(dbAppt => 
-        res.json(dbAppt)
+    console.log("I am trying to get my appointments");
+    const userId = req.param('userid');
+
+    db.User.find({ _id : userId})
+      .populate("appointments")
+      .then(dbUserAppts => 
+        //console.log(dbUserAppts)
+        res.json(dbUserAppts)
       );
+
+    // db.Appointment.find({ user: userid })
+    //   .then(dbAppt => 
+    //     res.json(dbAppt)
+    //   );
   },
   update: function (req, res) {
     const id = req.param('id');

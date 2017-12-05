@@ -2,34 +2,19 @@ import React, { Component } from "react";
 import Modal from 'react-modal';
 import API from "../../Utils/api";
 import ApptForm from "../ApptForm";
+import Appointment from "../Appointment";
 
-const Appointment = ({ appt, handleUpdate, handleDelete }) => (
-  <div className="panel-body">
-    <h5>Appointment Name: {appt.appointmentName}</h5>
-    <h5>Appointment Number: {appt.appointmentNumber}</h5>
-    <h5>Date: {appt.date}</h5>
-    <h5>Time: {appt.time}</h5>
-    <h5># of Notification: {appt.notification}</h5>
-    {handleUpdate &&
-      <button className="btn btn-default" onClick={() => handleUpdate(appt)}>Update</button>
-    }
-    {handleDelete &&
-      <button className="btn btn-default" onClick={() => handleDelete(appt)}>Delete</button>
-    }
-  </div>
-);
-
-class PresentWell extends Component {
+class AppointmentsWell extends Component {
   state = {
     apptId: '',
     apptName: '',
-    apptDate: '',
+    //apptDate: '',
     apptTime: '',
     apptNotification: '',
     apptNotificationNumber: '',
     appointments: [],
     isModalOpen: false,
-  };
+  }
 
   componentWillMount() {
     this.loadAppointments();
@@ -47,7 +32,7 @@ class PresentWell extends Component {
     this.setState({
       apptId: appt._id,
       apptName: appt.appointmentName,
-      apptDate: appt.date,
+      //apptDate: appt.date,
       apptTime: appt.time,
       apptNotification: appt.notification,
       apptNotificationNumber: appt.appointmentNumber,
@@ -59,7 +44,7 @@ class PresentWell extends Component {
     this.setState({
       apptId: '',
       apptName: '',
-      apptDate: '',
+      //apptDate: '',
       apptTime: '',
       apptNotification: '',
       apptNotificationNumber: '',
@@ -75,7 +60,7 @@ class PresentWell extends Component {
     const {
       apptId,
       apptName,
-      apptDate,
+      //apptDate,
       apptTime,
       apptNotification,
       apptNotificationNumber } = this.state;
@@ -83,8 +68,8 @@ class PresentWell extends Component {
     const pastAppts = this.getPastAppointments();
     return (
       <div>
-        PresentWell
-        <div className="panel panel-default" id="panel">
+        <h4>Upcoming Appointments</h4>
+        <div className="well" id="upcoming-well">
           {upcomingAppts.map(appt => 
             <Appointment
               appt={appt}
@@ -93,8 +78,8 @@ class PresentWell extends Component {
               handleDelete={this.handleDelete} />
           )}
         </div>
-        Past Well
-        <div className="panel panel-default" id="panel">
+        <h4>Past Appointments</h4>
+        <div className="well" id="past-well">
           {pastAppts.map(appt =>
             <Appointment
               appt={appt}
@@ -106,7 +91,7 @@ class PresentWell extends Component {
           <ApptForm user={user}
             apptId={apptId}
             apptName={apptName}
-            apptDate={apptDate}
+            //apptDate={apptDate}
             apptTime={apptTime}
             apptNotification={apptNotification}
             apptNotificationNumber={apptNotificationNumber}
@@ -117,9 +102,13 @@ class PresentWell extends Component {
   }
 
   loadAppointments() {
+    console.log("I am trying to load my appointments");
+
     API.getUserAppointments(this.props.user._id)
       .then(res => {
-        this.setState({ appointments: res.data });
+        console.log("I got my appointments back!!!");
+        console.log(res.data[0].appointments);
+        this.setState({ appointments: res.data[0].appointments });
       })
       .catch(err => console.error(err));
   }
@@ -133,4 +122,4 @@ class PresentWell extends Component {
   }
 }
 
-export default PresentWell;
+export default AppointmentsWell;

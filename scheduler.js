@@ -2,7 +2,7 @@
 
 const CronJob = require('cron').CronJob;
 const moment = require('moment');  
-const notfication = require('./workers/notficationsWorker');
+const notification = require('./workers/notifications');
 
 const schedulerTimer = () => {
   return {
