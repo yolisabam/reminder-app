@@ -14,7 +14,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div class="container">
+      // <div class="container">
         <nav className="navbar navbar-default">
           <div className="container-fluid">
   
@@ -31,7 +31,7 @@ class NavBar extends Component {
             </ul>
           </div>
         </nav>
-      </div>
+      // </div>
     );
   }
 }
