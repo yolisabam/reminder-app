@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../Utils/api";
 import "./ApptForm.css";
-import Cookies2 from "js-cookie";
+//import Cookies2 from "js-cookie";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 //css for date picker
@@ -18,6 +18,7 @@ class ApptForm extends Component {
     //apptDate : moment(),
     apptTime : moment(),
     apptNotification : "",
+    apptNotificationLabel : "",
     apptNotificationNumber : "",
     isApptNameEmpty : false,
     isApptNotificationNumberEmpty : false,
@@ -31,7 +32,7 @@ class ApptForm extends Component {
       user, 
       apptName,
       //apptDate,
-      apptTime,
+      //apptTime,
       apptNotification,
       apptNotificationNumber
     } = this.props;
@@ -91,7 +92,8 @@ class ApptForm extends Component {
         //date : this.state.apptTime,
         time : this.state.apptTime,
         appointmentNumber : this.state.apptNotificationNumber,
-        notification : this.state.apptNotification
+        notification : this.state.apptNotification,
+        notificationLabel : this.state.apptNotificationLabel
       })
       .then(res => {
         console.log(res);
@@ -100,7 +102,8 @@ class ApptForm extends Component {
           apptName : "",
           //apptDate : moment(),
           apptTime : moment(),
-          apptNotification : ""
+          apptNotification : "",
+          apptNotificationLabel : ""
           //apptNotificationNumber : "",
         });
       })
@@ -161,7 +164,10 @@ class ApptForm extends Component {
   };
   
   handleNotificationChange = (selectedOption) => {
-    this.setState({ apptNotification : selectedOption.value });
+    this.setState({ 
+      apptNotification : selectedOption.value, 
+      apptNotificationLabel : selectedOption.label
+    });
     console.log(`Selected: ${selectedOption.label}`);
   }
 
@@ -170,7 +176,7 @@ class ApptForm extends Component {
     //console.log(this.state.apptDate.format('LLL'));  
 
     return (
-      <div className="container">
+      <div className="container float-left">
         <div className="row">
           <div className="col-md-5">
             <div className="panel panel-default">
@@ -265,8 +271,6 @@ class ApptForm extends Component {
                     <div id="error-appt-notification-left-empty" className={!this.state.isApptNotificationEmpty ? "error-div-appt-notification invisible" : "error-div-appt-notification"}>
                       <p className="error text-center">Please provide your notification schedule!</p>
                     </div>
-                    <br></br>
-                    <hr></hr>
                     <button 
                       type="submit" 
                       className="btn btn-default" 
