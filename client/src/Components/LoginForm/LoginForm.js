@@ -316,6 +316,9 @@ class LoginForm extends Component {
           <div className="panel-body">
             <form className="form-horizontal">  
               <div className="form-group">
+<<<<<<< HEAD
+                <label htmlFor="input-email" className="col-sm-4 control-label">Email</label>
+=======
                 <label htmlFor="input-email" className="col-sm-4 control-label animated bounceInLeft">Email</label>
                  <label>Test</label>
                 <div className="col-sm-6">
@@ -335,6 +338,7 @@ class LoginForm extends Component {
                 </div> 
 
                 <label htmlFor="inputUserName" className="col-sm-4 control-label">Email</label>
+>>>>>>> master
                 <div className="col-sm-6">
                   <input 
                     value={this.state.loginEmail}
