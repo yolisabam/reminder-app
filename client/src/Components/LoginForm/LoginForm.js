@@ -199,7 +199,7 @@ class LoginForm extends Component {
             </div>
             <div className="modal-body">
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">First Name </span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">First Name </span>
                 <input 
                   value={this.state.signUpFirstName}
                   name="signUpFirstName"
@@ -215,7 +215,7 @@ class LoginForm extends Component {
               </div>
               <br></br>
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Last Name</span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Last Name</span>
                 <input 
                   value={this.state.signUpLastName}
                   name="signUpLastName"
@@ -231,7 +231,7 @@ class LoginForm extends Component {
               </div>
               <br></br>
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Email</span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Email</span>
                 <input 
                   value={this.state.signUpEmail}
                   name="signUpEmail"
@@ -258,7 +258,7 @@ class LoginForm extends Component {
               }
               <br></br>
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Password</span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Password</span>
                 <input 
                   value={this.state.signUpPassword}
                   name="signUpPassword"
@@ -273,7 +273,7 @@ class LoginForm extends Component {
               </div>
               <br></br>
               <div className="input-group">
-                <span className="input-group-addon" id="basic-addon1">Mobile Number</span>
+                <span className="input-group-addon animated bounceInLeft" id="basic-addon1">Mobile Number</span>
                 <input 
                   value={this.state.signUpPhone}
                   name="signUpPhone"
@@ -301,12 +301,12 @@ class LoginForm extends Component {
           </div>
         </Modal>
         {/* Login Form */}
-        <div className="panel panel-info">
+        {/*<div className="panel panel-info">
           <div className="panel-body">
             <form className="form-horizontal">  
               <div className="form-group">
-                <label htmlFor="input-email" className="col-sm-4 control-label">Email</label>
-                {/* <label>Test</label>
+                <label htmlFor="input-email" className="col-sm-4 control-label animated bounceInLeft">Email</label>
+                 <label>Test</label>
                 <div className="col-sm-6">
                   <input
                     ref={(input) => { this.testInput = input; }}
@@ -321,7 +321,7 @@ class LoginForm extends Component {
                   {this.state.isSubmitButtonPressed && this.testInput.validity.patternMismatch &&
                   <p>Invalid Email Message</p>
                   }
-                </div> */}
+                </div> 
                 <div className="col-sm-6">
                   <input 
                     value={this.state.loginEmail}
@@ -341,7 +341,7 @@ class LoginForm extends Component {
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="input-password" className="col-sm-4 control-label">Password</label>
+                <label htmlFor="input-password" className="col-sm-4 control-label animated bounceInLeft">Password</label>
                 <div className="col-sm-6">
                   <input  
                     value={this.state.loginPassword}
@@ -375,6 +375,23 @@ class LoginForm extends Component {
             </form>    
           </div>
         </div>
+
+
+      {/*sample 2*/}
+      <header>Log In</header>
+
+      <form id="form" className="topBefore">
+          
+        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" ></input>
+        <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password"></input>
+        <input id="submit" type="submit" value="Sign In!" onClick={this.handleLoginFormSubmit}></input>
+      </form>
+        <div className="col-sm-offset-2 col-sm-5">
+          <hr></hr>
+          <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
+        </div>
+      {/*sample 2*/}
+
       </div>
     );
   }
