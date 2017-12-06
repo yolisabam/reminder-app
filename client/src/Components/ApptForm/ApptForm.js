@@ -84,75 +84,55 @@ class ApptForm extends Component {
       (stateElement.input) ? this.setState({[stateElement.validation] : false}) : this.setState({[stateElement.validation] : true})
       });
     } 
-    //else if all input values are not empty
-    else if (this.state.apptName && this.state.apptTime  && this.state.apptNotification && this.state.apptNotificationNumber) {
-      console.log("I am now about to create my appointment");
-      API.saveUserAppointment( this.props.user._id,{
-        appointmentName : this.state.apptName,
-        //date : this.state.apptTime,
-        time : this.state.apptTime,
-        appointmentNumber : this.state.apptNotificationNumber,
-        notification : this.state.apptNotification,
-        notificationLabel : this.state.apptNotificationLabel
-      })
-      .then(res => {
-        console.log(res);
-        //empty out the input elements
-        this.setState({
-          apptName : "",
-          //apptDate : moment(),
-          apptTime : moment(),
-          apptNotification : "",
-          apptNotificationLabel : ""
-          //apptNotificationNumber : "",
-        });
-      })
-      .catch(err => console.log(err));
-    // else if (this.state.apptName && this.state.apptDate && this.state.apptTime && this.state.apptNotification && this.state.apptNotificationNumber  ) {
+    else if (this.state.apptName && this.state.apptTime && this.state.apptNotification && this.state.apptNotificationNumber  ) {
 
-    //   if (this.props.apptId) {
-    //     console.log("I am now about to update my appointment");
-    //     API.updateUserAppointment(this.props.user._id, this.props.apptId, {
-    //       appointmentName: this.state.apptName,
-    //       date: this.state.apptDate,
-    //       time: this.state.apptTime,
-    //       appointmentNumber: this.state.apptNotificationNumber,
-    //       notification: this.state.apptNotification
-    //     })
-    //       .then(res => {
-    //         //empty out the input elements
-    //         this.setState({
-    //           apptName: "",
-    //           apptDate: "",
-    //           apptTime: "",
-    //           apptNumber: ""
-    //         });
+      if (this.props.apptId) {
+        console.log("I am now about to update my appointment");
+        API.updateUserAppointment(this.props.user._id, this.props.apptId, {
+          appointmentName: this.state.apptName,
+          //date: this.state.apptDate,
+          time: this.state.apptTime,
+          appointmentNumber: this.state.apptNotificationNumber,
+          notification: this.state.apptNotification,
+          notificationLabel : this.state.apptNotificationLabel
+        })
+          .then(res => {
+            //empty out the input elements
+            this.setState({
+              apptName: "",
+              //apptDate: "",
+              apptTime: moment(),
+              apptNotification : "",
+              apptNotificationLabel : ""
+            });
 
-    //         this.props.handleSubmit && this.props.handleSubmit();
-    //       })
-    //       .catch(err => console.log(err))
-    //   } else {
-    //     console.log("I am now about to create my appointment");
-    //     API.saveUserAppointment(this.props.user._id, {
-    //       appointmentName: this.state.apptName,
-    //       date: this.state.apptDate,
-    //       time: this.state.apptTime,
-    //       appointmentNumber: this.state.apptNotificationNumber,
-    //       notification: this.state.apptNotification
-    //     })
-    //       .then(res => {
-    //         //empty out the input elements
-    //         this.setState({
-    //           apptName: "",
-    //           apptDate: "",
-    //           apptTime: "",
-    //           apptNumber: ""
-    //         });
+            this.props.handleSubmit && this.props.handleSubmit();
+          })
+          .catch(err => console.log(err))
+      } else {
+        console.log("I am now about to create my appointment");
+        API.saveUserAppointment(this.props.user._id, {
+          appointmentName: this.state.apptName,
+          //date: this.state.apptDate,
+          time: this.state.apptTime,
+          appointmentNumber: this.state.apptNotificationNumber,
+          notification: this.state.apptNotification,
+          notificationLabel : this.state.apptNotificationLabel
+        })
+          .then(res => {
+            //empty out the input elements
+            this.setState({
+              apptName: "",
+              //apptDate: "",
+              apptTime: moment(),
+              apptNotification : "",
+              apptNotificationLabel : ""
+            });
 
-    //         this.props.handleSubmit && this.props.handleSubmit();
-    //       })
-    //       .catch(err => console.log(err))
-    //   } 
+            this.props.handleSubmit && this.props.handleSubmit();
+          })
+          .catch(err => console.log(err))
+      } 
     }
   };
 
@@ -258,18 +238,6 @@ class ApptForm extends Component {
                           { value: '1', label: '1 minute' }
                         ]}
                       />
-                      {/*}
-                      <NotificationChoices />
-                      <input 
-                        name="apptNotification"
-                        value={this.state.apptNotification}
-                        onChange={this.handleInputChange}
-                        type="text" 
-                        id="notif-sched" 
-                        className="form-control" 
-                        placeholder="Appointment Notification">
-                      </input>
-                      */}
                     </div>  
                     <div id="error-appt-notification-left-empty" className={!this.state.isApptNotificationEmpty ? "error-div-appt-notification invisible" : "error-div-appt-notification"}>
                       <p className="error text-center">Please provide your notification schedule!</p>

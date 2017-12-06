@@ -11,6 +11,7 @@
     "google-maps-react": "^1.1.2",
     "js-cookie": "^2.2.0",
     "moment": "^2.19.3",
+    "moment-timezone": "^0.5.14",
     "react": "^16.2.0",
     "react-datepicker": "^0.61.0",
     "react-dom": "^16.2.0",
