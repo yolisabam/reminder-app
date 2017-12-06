@@ -408,7 +408,17 @@ class LoginForm extends Component {
 
       {/*sample 2*/}
       <header className="animated headShake">Log In</header>
-      <form id="form" className="topBefore animated headShake">
+        <form id="form" className="topBefore animated headShake">
+            
+          <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
+          <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password" className="loginHover"></input>
+          <input id="submit" type="submit" value="Sign In!" className="loginHover" onClick={this.handleLoginFormSubmit}></input>
+        </form>
+        <div className="col-sm-offset-2 col-sm-5">
+          <hr></hr>
+          <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
+        </div>
+        {/*}
         <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" ></input>
           {this.state.isLoginEmailEmpty &&
             <div id="error-email-left-empty">
@@ -439,6 +449,7 @@ class LoginForm extends Component {
           <hr></hr>
           <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
         </div>
+      */}
       {/*sample 2*/}
 
       </div>
