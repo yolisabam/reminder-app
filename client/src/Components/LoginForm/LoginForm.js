@@ -408,10 +408,29 @@ class LoginForm extends Component {
 
       {/*sample 2*/}
       <header className="animated headShake">Log In</header>
-        <form id="form" className="topBefore animated headShake">
-            
+        <form id="form" className="topBefore animated headShake"> 
           <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
+            {this.state.isLoginEmailEmpty &&
+              <div id="error-email-left-empty">
+                <p className="error text-center">Please enter your email address!</p>
+              </div>
+            }
+            {!this.state.isValidEmail && 
+              <div id="error-username-not-exist">
+                <p className="error text-center">This email does not exist!</p>
+              </div>
+            }
           <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password" className="loginHover"></input>
+            {this.state.isLoginPasswordEmpty &&
+              <div id="error-password-left-empty">
+                <p className="error text-center">Please enter your password!</p>
+              </div>
+            }
+            {!this.state.isValidPassword &&
+              <div id="error-password-incorrect">
+                <p className="error text-center">The password is incorrect!</p>
+              </div>
+            }  
           <input id="submit" type="submit" value="Sign In!" className="loginHover" onClick={this.handleLoginFormSubmit}></input>
         </form>
         <div className="col-sm-offset-2 col-sm-5">
