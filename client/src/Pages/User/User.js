@@ -17,7 +17,7 @@ class User extends Component {
       <div class="wrapper">
         <NavBar />
         <div>
-          <Hero backgroundImage="https://images.crutchfieldonline.com/ImageHandler/scale/978/978/products/2014/41/158/x158NWZA17S-o_lifestyle.jpg">
+          <Hero backgroundImage="/assets/background.jpg">
               <ApptForm user={user} />
               {/*<SimpleForm />*/}
               <MapRender />

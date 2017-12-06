@@ -63,7 +63,7 @@ appointmentSchema.statics.sendNotifications = function(cb) {
         const message = {
           to: `+1${appointment.appointmentNumber}`,
           from: config.twilioPhoneNumber,
-          body: `Hi! Just a quick reminder that ${appointment.appointmentName} is coming up !`,
+          body: `Hi! Just a quick reminder that ${appointment.appointmentName} is coming up in ${appointment.notificationLabel}!`,
         };
 
         client.messages.create(message, function(err, res){
