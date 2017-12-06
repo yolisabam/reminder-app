@@ -108,8 +108,10 @@ class ApptForm extends Component {
               apptNotification : "",
               apptNotificationLabel : ""
             });
+            //this will reload the page and refresh the upcoming appointment well
+            window.location.reload();
 
-            this.props.handleSubmit && this.props.handleSubmit();
+            //this.props.handleSubmit && this.props.handleSubmit();
           })
           .catch(err => console.log(err))
       } else {
@@ -131,8 +133,10 @@ class ApptForm extends Component {
               apptNotification : "",
               apptNotificationLabel : ""
             });
+            //this will reload the page and refresh the upcoming appointment well
+            window.location.reload();
 
-            this.props.handleSubmit && this.props.handleSubmit();
+            //this.props.handleSubmit && this.props.handleSubmit();
           })
           .catch(err => console.log(err))
       } 
