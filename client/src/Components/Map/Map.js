@@ -70,17 +70,6 @@ class MapRender extends Component {
       <div id='app'>
         <div id='map' />
          <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
-
-
-       {/*modal*/}
-
-
-       
-
-
-
-       {/*modal*/}
-
       </div>
     );
   }

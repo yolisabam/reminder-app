@@ -4,7 +4,7 @@ const notifications = function() {
   return {
     run: function() {
       Appointment.sendNotifications();
-    
+      Appointment.updateNotifications();
     },
   };
 };

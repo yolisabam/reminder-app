@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
 const Twilio = require('twilio');
-const config = require('../config')
+const config = require('../config');
+
 
 const appointmentSchema = new mongoose.Schema({
   appointmentName: {
@@ -11,18 +12,11 @@ const appointmentSchema = new mongoose.Schema({
   time: {
     type: Date,
     required : true
-    // validate: function (v) {
-    //   return new Date(v.getFullYear(), v.getMonth(), v.getDate());
-    //}
   },
-  // time: {
-  //   type : String,                               
-  //   validate: function (v) {
-  //     return /([01]\d|2[0-3]):?[0-5]\d/.test(v);
-  //   },
-  //   message: '{VALUE} is not a valid time format!',
-  //   required: [true, 'We need your time input in order to send you notification'],
-  // },
+  timeZone: {
+    type : String,
+    default : "America/Los_Angeles"
+  },
   appointmentNumber: {
     type: String,
     required:true
@@ -42,7 +36,6 @@ appointmentSchema.methods.requiresNotification = function(date) {
                           .diff(moment(date).utc())
                           ).asMinutes()) === this.notification;
 };
-
 appointmentSchema.statics.sendNotifications = function(cb) {
   const searchDate = new Date();
   console.log('searchDate : ' + searchDate);
@@ -54,10 +47,11 @@ appointmentSchema.statics.sendNotifications = function(cb) {
       });
       if (appointments.length > 0) {
         console.log("I FOUND AN APPOINTMENT!!!");
+        console.log(appointments);
         sendNotifications(appointments);
       } else {
         console.log("duration");
-        console.log(Math.round(moment.duration(moment("2017-12-05T07:53:41.095Z").utc()
+        console.log(Math.round(moment.duration(moment(this.time).utc()
                           .diff(moment(searchDate).utc())
                           ).asMinutes()));
       }
@@ -86,6 +80,15 @@ appointmentSchema.statics.sendNotifications = function(cb) {
       }
     }
 };
+
+appointmentSchema.statics.updateNotifications = () => {
+  console.log("I am finding an expired appointment");
+  Appointment
+    //find the appts that are in the past
+    .updateMany( { "time" : { $lte : new Date() }, "notification" : { $gt : 0 } }, { $set : { "notification" : 0} } )
+    .then(dbAppt => console.log(dbAppt))
+    .catch(err => console.log(err));
+} 
 
 const Appointment = mongoose.model("Appointment", appointmentSchema);
 module.exports = Appointment;

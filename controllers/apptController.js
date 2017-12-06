@@ -29,11 +29,6 @@ module.exports = {
         //console.log(dbUserAppts)
         res.json(dbUserAppts)
       );
-
-    // db.Appointment.find({ user: userid })
-    //   .then(dbAppt => 
-    //     res.json(dbAppt)
-    //   );
   },
   update: function (req, res) {
     const id = req.param('id');
@@ -47,6 +42,7 @@ module.exports = {
           dbAppt.time = req.body.time;
           dbAppt.notification = req.body.notification;
           dbAppt.appointmentNumber = req.body.appointmentNumber;
+          dbAppt.notificationLabel = req.body.notificationLabel;
           dbAppt.save((err, dbAppt) => {
             if (err) console.error(err);
             res.json(dbAppt);

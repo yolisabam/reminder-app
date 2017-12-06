@@ -109,3 +109,13 @@ header {
 .ReactModal__Content:focus {
   outline : 0;
 }
+
+#SignUpForm {
+    margin: 0px;
+    line-height: 1.42857143;
+    position: relative;
+    left: -12px;
+}
+h1 {
+  margin: 0
+}
