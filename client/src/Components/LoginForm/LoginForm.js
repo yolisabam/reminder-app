@@ -190,9 +190,9 @@ class LoginForm extends Component {
       <div>
         {/* Sign Up Form */}
         <Modal 
-          className="col-sm-6 col-sm-offset-3"
+          className="col-sm-6 col-sm-offset-3 animated pulse"
           isOpen={this.state.modalIsOpen}>
-          <div className="modal-content">
+          {/*<div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" onClick={this.closeModal}>&times;</button>
               <h4 className="modal-title">Sign Up Form</h4>
@@ -207,7 +207,8 @@ class LoginForm extends Component {
                   type="text"
                   className="form-control"
                   placeholder="first name"
-                  aria-describedby="basic-addon1">
+                  aria-describedby="basic-addon1"
+                  required>
                 </input>
               </div>
 
@@ -309,8 +310,23 @@ class LoginForm extends Component {
                 onClick={this.handleSignupFormSubmit}
               >Submit</button>
             </div>
-          </div>
+          </div>*/}
+
+      <form id="form" className="topBefore animated headShake">
+        <div className="modal-header">
+              <button type="button" className="close" onClick={this.closeModal}>close</button>
+              <h4 className="modal-title">Sign Up Form</h4>
+            </div>
+        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
+        <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password" className="loginHover"></input>
+        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
+        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
+        <input id="submit" type="submit" value="Submit!" className="loginHover" onClick={this.handleLoginFormSubmit}></input>
+      </form>
+      {/*sample 2*/}
         </Modal>
+
+
         {/* Login Form */}
         {/*<div className="panel panel-info">
           <div className="panel-body">
@@ -391,10 +407,18 @@ class LoginForm extends Component {
 
 
       {/*sample 2*/}
-      <header>Log In</header>
-
-      <form id="form" className="topBefore">
-          
+      <header className="animated headShake">Log In</header>
+        <form id="form" className="topBefore animated headShake">
+            
+          <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
+          <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password" className="loginHover"></input>
+          <input id="submit" type="submit" value="Sign In!" className="loginHover" onClick={this.handleLoginFormSubmit}></input>
+        </form>
+        <div className="col-sm-offset-2 col-sm-5">
+          <hr></hr>
+          <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
+        </div>
+        {/*}
         <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" ></input>
           {this.state.isLoginEmailEmpty &&
             <div id="error-email-left-empty">
@@ -425,6 +449,7 @@ class LoginForm extends Component {
           <hr></hr>
           <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
         </div>
+      */}
       {/*sample 2*/}
 
       </div>

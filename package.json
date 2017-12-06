@@ -27,6 +27,7 @@
     "express": "^4.16.2",
     "js-cookie": "^2.2.0",
     "moment": "^2.19.3",
+    "moment-timezone": "^0.5.14",
     "mongoose": "^4.13.5",
     "nodemailer": "^4.4.0",
     "react": "^16.2.0",
