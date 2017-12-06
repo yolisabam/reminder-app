@@ -67,28 +67,9 @@ class MapRender extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <PlacesAutocomplete inputProps={inputProps} />
-          <button type="submit">Submit</button>
-        </form>
-=======
       <div id='app'>
         <div id='map' />
          <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
-
-
-       {/*modal*/}
-
-
-       
-
-
-
-       {/*modal*/}
-
->>>>>>> master
       </div>
     );
   }
