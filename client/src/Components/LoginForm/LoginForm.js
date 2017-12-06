@@ -409,14 +409,14 @@ class LoginForm extends Component {
           }
         <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password"></input>
 
-          {this.state.isLoginPasswordEmpty &&
-            <div id="error-password-left-empty">
-              <p className="error text-center">Please enter your password!</p>
-            </div>
-          }
           {!this.state.isValidPassword &&
             <div id="error-password-incorrect">
               <p className="error text-center">The password is incorrect!</p>
+            </div>
+          }
+          {this.state.isLoginPasswordEmpty &&
+            <div id="error-password-left-empty">
+              <p className="error text-center">Please enter your password!</p>
             </div>
           }
         <input id="submit" type="submit" value="Sign In!" onClick={this.handleLoginFormSubmit}></input>
