@@ -314,16 +314,16 @@ class LoginForm extends Component {
 
       <form id="form" className="topBefore animated headShake">
         <div className="modal-header">
-              <button type="button" className="close" onClick={this.closeModal}>close</button>
-              <h4 className="modal-title">Sign Up Form</h4>
-            </div>
-        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
-        <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password" className="loginHover"></input>
-        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
-        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
-        <input id="submit" type="submit" value="Submit!" className="loginHover" onClick={this.handleLoginFormSubmit}></input>
+          <button type="button" className="close" onClick={this.closeModal}>close</button>
+          <h4 id="SignUpForm" className="modal-title">Sign Up Form</h4>
+        </div>
+        <input id="name" type="text" placeholder="firstname" value={this.state.signUpFirstName} name="signUpFirstName" onChange={this.handleInputChange}  className="loginHover"></input>
+        <input id="name" type="text" placeholder="lastname" value={this.state.signUpLastName} name="signUpLastName" onChange={this.handleInputChange}  className="loginHover"></input>
+        <input id="name" type="email" placeholder="email" value={this.state.signUpEmail} name="signUpEmail" onChange={this.handleInputChange}  className="loginHover"></input>
+        <input id="name" type="password" placeholder="password" value={this.state.signUpPassword} name="signUpPassword" onChange={this.handleInputChange}  className="loginHover"></input>
+        <input id="name" type="phonenumber" placeholder="123-456-7899" value={this.state.signUpPhone} name="signUpPhone" onChange={this.handleInputChange}  className="loginHover"></input>
+        <input id="submit" type="submit" value="Submit!" className="loginHover" onClick={this.handleSignupFormSubmit}></input>
       </form>
-      {/*sample 2*/}
         </Modal>
 
 
