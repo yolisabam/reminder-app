@@ -176,8 +176,8 @@ class ApptForm extends Component {
     //console.log(this.state.apptDate.format('LLL'));  
 
     return (
-      <div className="container float-left">
-        <div className="row">
+      <div className="container float-left animated pulse">
+       {/* <div className="row">
           <div className="col-md-5">
             <div className="panel panel-default">
               <div className="panel-heading">
@@ -258,18 +258,6 @@ class ApptForm extends Component {
                           { value: '1', label: '1 minute' }
                         ]}
                       />
-                      {/*}
-                      <NotificationChoices />
-                      <input 
-                        name="apptNotification"
-                        value={this.state.apptNotification}
-                        onChange={this.handleInputChange}
-                        type="text" 
-                        id="notif-sched" 
-                        className="form-control" 
-                        placeholder="Appointment Notification">
-                      </input>
-                      */}
                     </div>  
                     <div id="error-appt-notification-left-empty" className={!this.state.isApptNotificationEmpty ? "error-div-appt-notification invisible" : "error-div-appt-notification"}>
                       <p className="error text-center">Please provide your notification schedule!</p>
@@ -285,7 +273,79 @@ class ApptForm extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div>*/}
+
+
+      {/*start test appt form*/}
+      <div className="box">
+        <div id="header">
+         <h1 id="logintoregister">{`Greetings ${this.props.user.firstName}, let's set up your notification(s)`}</h1>
+        </div> 
+
+         <form>
+          <div className="group">      
+            <input className="inputMaterial" type="text" name="apptName"
+                        value={this.state.apptName}
+                        onChange={this.handleInputChange}
+                        id="appt-name"                         
+                        required></input>
+            <span className="highlight"></span>
+            <span className="bar"></span>
+            <label className="animated bounceInLeft">appointment name</label>
+          </div>
+            <div className="group">      
+            {/*<input className="inputMaterial" type="text" required></input>*/}
+            <DatePicker
+                        className="inputMaterial"
+                        id="appt-date"
+                        selected={this.state.apptTime}
+                        onChange={this.handleDateChange}
+                        showTimeSelect
+                        dateFormat="LLL"
+                      />
+            <span className="highlight"></span>
+            <span className="bar"></span>
+            {/*<label className="animated bounceInLeft">date/time</label>*/}
+          </div>
+          <div className="group">      
+            <input className="inputMaterial" type="text" name="apptNotificationNumber"
+                        value={this.state.apptNotificationNumber}
+                        onChange={this.handleInputChange}
+                        id="appt-notif-num" 
+                        required></input>
+            <span className="highlight"></span>
+            <span className="bar"></span>
+            <label className="animated bounceInLeft">mobile number</label>
+          </div>
+          <div className="group">      
+            <Select     
+                        className = "selectForm"
+                        name="apptNotification"
+                        value={this.state.apptNotification}
+                        onChange={this.handleNotificationChange}
+                        options={[
+                          { value: '2880', label: '2 days' },
+                          { value: '1440', label: '1 day' },
+                          { value: '120', label: '2 hours' },
+                          { value: '30', label: '30 minutes' },
+                          { value: '20', label: '20 minutes' },
+                          { value: '15', label: '15 minutes' },
+                          { value: '10', label: '10 minutes' },
+                          { value: '5', label: '5 minutes' },
+                          { value: '2', label: '2 minutes' },
+                          { value: '1', label: '1 minute' }
+                        ]}
+                      />
+            {/*<input className="inputMaterial" type="text" required></input>*/}
+            <span className="highlight"></span>
+            <span className="bar"></span>
+            {/*<label className="animated bounceInLeft">notification schedule</label>*/}
+          </div>
+          <button id="buttonlogintoregister" className="animated bounceInLeft" type="submit">submit</button>
+        </form>
+        
+      </div>
+      {/*end test appt form*/}
       </div>   
     )
   }
