@@ -58,7 +58,7 @@ header {
   margin: 50px auto 50px auto;
 }
 
-input {
+.loginHover {
   font-family: 'Lato', sans-serif;
   font-size: 1em;
   width: 470px;
@@ -78,16 +78,13 @@ input {
   -ms-transition: all 0.3s ease-in-out;
 }
 
-input:hover {
+.loginHover:hover {
   background: #2D3A4E;
   color: #e2dedb;
 }
 
 
-textarea:hover {
-  background: #b3aca7;
-  color: #e2dedb;
-}
+
 
 #submit {
   width: 470px;
