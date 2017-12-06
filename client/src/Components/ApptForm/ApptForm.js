@@ -24,7 +24,8 @@ class ApptForm extends Component {
     isApptNotificationNumberEmpty : false,
     isApptNotificationEmpty : false,
     isApptDateEmpty : false,
-    isApptTimeEmpty : false
+    isApptTimeEmpty : false,
+    appointments : []
   };
 
   componentWillMount() {
@@ -34,7 +35,8 @@ class ApptForm extends Component {
       //apptDate,
       //apptTime,
       apptNotification,
-      apptNotificationNumber
+      apptNotificationLabel,
+      apptNotificationNumber 
     } = this.props;
 
     //set the user cookie state
@@ -43,7 +45,8 @@ class ApptForm extends Component {
       //apptDate: apptDate || '',
       apptTime: moment(),
       apptNotification: apptNotification || '',
-      apptNotificationNumber: apptNotificationNumber || user.mobileNumber
+      apptNotificationNumber: apptNotificationNumber || user.mobileNumber,
+      apptNotificationLabel:apptNotificationLabel || ''
     });
   }
 
@@ -149,6 +152,18 @@ class ApptForm extends Component {
       apptNotificationLabel : selectedOption.label
     });
     console.log(`Selected: ${selectedOption.label}`);
+  }
+
+  loadAppointments = () => {
+    console.log("I am trying to load my appointments");
+
+    API.getUserAppointments(this.props.user._id)
+      .then(res => {
+        console.log("I got my appointments back!!!");
+        console.log(res.data[0].appointments);
+        this.setState({ appointments: res.data[0].appointments });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
