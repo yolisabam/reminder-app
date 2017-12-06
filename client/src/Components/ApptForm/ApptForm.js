@@ -180,7 +180,6 @@ class ApptForm extends Component {
           <div id="header">
            <h1 id="logintoregister">{`Greetings ${this.props.user.firstName}, let's set up your notification(s)`}</h1>
           </div> 
-
            <form>
             <div className="group">      
               <input className="inputMaterial" type="text" name="apptName"
