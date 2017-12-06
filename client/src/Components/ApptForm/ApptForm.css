@@ -11,3 +11,160 @@
 .react-datepicker__input-container {
   width : 100%;
 }
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500);
+
+/*html{
+  background-color: #f1f1f1;
+  font-family: "Roboto";
+}*/
+
+/* BOX LOGIN */
+.box{
+  position: relative;
+  /*margin: auto;*/
+  height: 570px;
+  top: 40px;
+  left: 0;
+  z-index: 200;
+  right: 0;
+  width:400px;
+  color:#666;
+  border-radius: 3px;
+  background: #FFF;
+  margin-bottom: 100px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  overflow: hidden;
+}
+
+
+.box h1{
+  /*margin-left: 40px;*/
+  padding-bottom: 30px;
+    font-size:25px;
+  font-weight: 300;
+  color: #2D3A4E;
+}
+
+.box button{
+    background: #cfd8dc;
+    border:0;
+    color: #2D3A4E;
+    padding:10px;
+    font-size: 16px;
+  font-weight: 300;
+    width:100px;
+    margin:20px auto;
+    display:block;
+    cursor:pointer;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+    border-radius: 2px;
+}
+
+.box button:active{
+    background: #2D3A4E;
+  color: #2D3A4E;
+}
+
+.box button:hover{
+        background: #2D3A4E;
+  color: #FFF;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.box p{
+    font-size:14px;
+    text-align:center;
+}
+
+.group            { 
+  position:relative; 
+  margin-bottom: 35px; 
+  margin-left: 40px;
+}
+
+.selectForm {
+  width: 300px;
+}
+
+.inputMaterial              {
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:300px;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+.inputMaterial:focus        { outline:none;}
+
+/* LABEL ======================================= */
+
+label                {
+  color:#999; 
+  font-size:14px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.inputMaterial:focus ~ label, .inputMaterial:valid ~ label      {
+  top:-20px;
+  font-size:14px;
+  color: #2D3A4E;
+}
+
+/* BOTTOM BARS ================================= */
+.bar    { position:relative; display:block; width:300px; }
+.bar:before, .bar:after     {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background: #2D3A4E; 
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+.inputMaterial:focus ~ .bar:before, .inputMaterial:focus ~ .bar:after {
+  width:50%;
+}
+
+
+/* active state */
+.inputMaterial:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from { background:#5264AE; }
+  to    { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#5264AE; }
+  to    { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#5264AE; }
+  to    { width:0; background:transparent; }
+  }

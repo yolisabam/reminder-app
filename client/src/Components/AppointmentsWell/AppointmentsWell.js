@@ -85,7 +85,50 @@ class AppointmentsWell extends Component {
     const pastAppts = this.getPastAppointments();
     return (
       <div>
-        <h4>Upcoming Appointments</h4>
+
+       {/*test well*/}
+
+       <div className="container">
+         
+          <h4 className="animated headShake">Upcoming Appointments</h4>
+          <div className="well" id="upcoming-well">
+            {upcomingAppts.map(appt => 
+              <Appointment
+                appt={appt}
+                key={appt._id}
+                handleUpdate={this.handleUpdate}
+                handleDelete={this.handleDelete} />
+            )}
+          </div>
+          <h4 className="animated headShake">Past Appointments</h4>
+          <div className="well" id="past-well">
+            {pastAppts.map(appt =>
+              <Appointment
+                appt={appt}
+                key={appt._id}
+                handleDelete={this.handleDelete} />
+            )}
+          </div>
+          <Modal isOpen={this.state.isModalOpen}>
+            <ApptForm user={user}
+              apptId={apptId}
+              apptName={apptName}
+              //apptDate={apptDate}
+              apptTime={apptTime}
+              apptNotification={apptNotification}
+              apptNotificationNumber={apptNotificationNumber}
+              handleSubmit={this.onUpdateAppointment} />
+          </Modal>
+             
+       </div>
+
+
+
+
+
+        {/*test well*/}
+
+        {/*<h4>Upcoming Appointments</h4>
         <div className="well" id="upcoming-well">
           {upcomingAppts.map(appt => 
             <Appointment
@@ -114,7 +157,7 @@ class AppointmentsWell extends Component {
             apptNotificationNumber={apptNotificationNumber}
             apptNotificationLabel={apptNotificationLabel}
             handleSubmit={this.onUpdateAppointment} />
-        </Modal>
+        </Modal>*/}
       </div>
     );
   }
