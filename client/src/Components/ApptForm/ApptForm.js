@@ -277,7 +277,7 @@ class ApptForm extends Component {
 
 
       {/*start test appt form*/}
-      <div className="box">
+     <div className="box">
         <div id="header">
          <h1 id="logintoregister">{`Greetings ${this.props.user.firstName}, let's set up your notification(s)`}</h1>
         </div> 
@@ -341,10 +341,13 @@ class ApptForm extends Component {
             <span className="bar"></span>
             {/*<label className="animated bounceInLeft">notification schedule</label>*/}
           </div>
-          <button id="buttonlogintoregister" className="animated bounceInLeft" type="submit">submit</button>
+          <button id="buttonlogintoregister" className="animated bounceInLeft" type="submit" 
+                      className="btn btn-default" 
+                      id="appt-submit"
+                      onClick={this.handleFormSubmit}>submit</button>
         </form>
         
-      </div>
+       </div>
       {/*end test appt form*/}
       </div>   
     )
