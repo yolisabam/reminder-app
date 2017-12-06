@@ -24,7 +24,7 @@ class SimpleForm extends Component {
     }
 
     return (
-      <div className="col-md-6 float-right">
+      <div>
         <form onSubmit={this.handleFormSubmit}>
           <PlacesAutocomplete inputProps={inputProps} />
           <button type="submit">Submit</button>

@@ -14,22 +14,27 @@ class User extends Component {
     const user = Cookies2.getJSON('user');
     //console.log(user);
     return (
-      <div className="container">
+      <div className="container-fluid">
         <NavBar />
         <div>
           <Hero backgroundImage="https://images.crutchfieldonline.com/ImageHandler/scale/978/978/products/2014/41/158/x158NWZA17S-o_lifestyle.jpg">
-              <h1>Welcome to the User Page!</h1>
-              <h2>You will see and set up your appointments in this page</h2>
-              <ApptForm user={user} />
-              <SimpleForm />
+              {/*<h1>Welcome to the User Page!</h1>
+              <h2>You will see and set up your appointments in this page</h2>*/}
+            <div className="row">  
+              <div className="col-sm-5 col-sm-offset-1 appt-form-container">
+                <ApptForm user={user} />
+              </div>
+              <div className="col-sm-5 map-container">
+                <SimpleForm />
+              </div>
+            </div>
           </Hero>
         </div>
         <AppointmentsWell user={user}/>
         <br></br>
-        <br></br>
         <hr></hr>
         <h1>There will be a form here!!!</h1>
-      </div>
+    </div>
     );
   }
 }
