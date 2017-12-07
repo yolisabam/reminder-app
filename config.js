@@ -1,4 +1,6 @@
-import twillioKeys from "./keys.js";
+const twillioKeys = require("./keys.js");
+
+const config = {};
 
 config.twilioAccountSid = twillioKeys.twilioAccountSid;
 config.twilioAuthToken = twillioKeys.twilioAuthToken;
