@@ -2,7 +2,7 @@
   border-color: black;  
   box-shadow: none; 
   -webkit-box-shadow: none;
-}
+} 
 
 .react-datepicker-wrapper {
   width : 100%;
@@ -23,11 +23,38 @@
   margin-top: 30px;
 }
 
+#PlacesAutocomplete__root{
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+.address-form-control {
+    width: 100% !important;
+    margin-left: 0px;
+    padding-left: 0px;
+    margin-right: 50px;
+    content: "address";
+}
+.selectForm {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
 /* BOX LOGIN */
 .box{
   position: relative;
   /*margin: auto;*/
-  height: 550px;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  height: 590px;
   top: 40px;
   left: 0;
   z-index: 200;
@@ -35,7 +62,7 @@
   width:400px;
   color:#253042;
   border-radius: 3px;
-  background: #fcfdfd;
+  background: #fff;
   margin-bottom: 100px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   overflow: hidden;

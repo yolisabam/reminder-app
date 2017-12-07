@@ -102,7 +102,7 @@ class AppointmentsWell extends Component {
       <div>
        {/*test well*/}
         <div className="container">   
-          <h4 className="animated headShake">Upcoming Appointments</h4>
+          <h4 className="animated headShake" id="UpcomingEvents">Upcoming Appointments</h4>
           <div className="well" id="upcoming-well">
             {upcomingAppts.map(appt => 
               <div>
