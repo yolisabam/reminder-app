@@ -43,7 +43,9 @@ body {
   background: #bec8d9;
   color: #253042;
 }
-
+#sign-up:hover {
+  text-decoration: none;
+}
 
 header {
   position: relative;
@@ -125,4 +127,7 @@ header:hover {
 }
 h1 {
   margin: 0
+}
+.loginSection {
+  height: 100vh;
 }

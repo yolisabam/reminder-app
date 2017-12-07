@@ -328,86 +328,11 @@ class LoginForm extends Component {
         </Modal>
 
 
-        {/* Login Form */}
-        {/*<div className="panel panel-info">
-          <div className="panel-body">
-            <form className="form-horizontal">  
-              <div className="form-group">
-                <label htmlFor="input-email" className="col-sm-4 control-label animated bounceInLeft">Email</label>
-                 <label>Test</label>
-                <div className="col-sm-6">
-                  <input
-                    ref={(input) => { this.testInput = input; }}
-                    value={this.state.testInput}
-                    name="loginTest"
-                    required
-                    type="email"
-                    pattern="^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
-                    className="form-control"
-                    id="input-test"
-                    placeholder="test"/>
-                  {this.state.isSubmitButtonPressed && this.testInput.validity.patternMismatch &&
-                  <p>Invalid Email Message</p>
-                  }
-                </div> 
-
-                <label htmlFor="inputUserName" className="col-sm-4 control-label">Email</label>
-                <div className="col-sm-6">
-                  <input 
-                    value={this.state.loginEmail}
-                    name="loginEmail"
-                    onChange={this.handleInputChange}
-                    type="text" 
-                    className="form-control" 
-                    id="input-email" 
-                    placeholder="name@email.com"></input>
-                </div>
-                <div id="error-email-left-empty" className={!this.state.isLoginEmailEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">Please enter your email address!</p>
-                </div>
-                <br></br>
-                <div id="error-username-not-exist" className={this.state.isValidEmail ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">This email does not exist!</p>
-                </div>
-              </div>
-              <div className="form-group">
-                <label htmlFor="input-password" className="col-sm-4 control-label animated bounceInLeft">Password</label>
-                <div className="col-sm-6">
-                  <input  
-                    value={this.state.loginPassword}
-                    name="loginPassword"
-                    onChange={this.handleInputChange}
-                    type="password" 
-                    className="form-control" 
-                    id="input-password" 
-                    placeholder="password">
-                  </input>
-                </div>
-                <div id="error-password-left-empty" className={!this.state.isLoginPasswordEmpty ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">Please enter your password!</p>
-                </div>
-                <div id="error-password-incorrect" className={this.state.isValidPassword ? "error-div-signup invisible" : "error-div-signup"}>
-                  <p className="error text-center">The password is incorrect!</p>
-                </div>
-              </div>
-              <div className="form-group">
-                <div className="col-sm-offset-2 col-sm-6">
-                  <button 
-                    type="submit" 
-                    className="btn btn-default" 
-                    id="login-submit"
-                    onClick={this.handleLoginFormSubmit}
-                    >Sign in</button>
-                  <hr></hr>
-                  <p id="need-acct">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
-                </div>
-              </div>
-            </form>    
-          </div>
-        </div>*/}
+      
 
 
       {/*sample 2*/}
+      <section className="loginSection">
       <header className="animated headShake">Log In</header>
         <form id="form" className="topBefore animated headShake"> 
           <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
@@ -438,39 +363,8 @@ class LoginForm extends Component {
           <hr></hr>
           <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
         </div>
-        {/*}
-        <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" ></input>
-          {this.state.isLoginEmailEmpty &&
-            <div id="error-email-left-empty">
-              <p className="error text-center">Please enter your email address!</p>
-            </div>
-          }
-          
-          {!this.state.isValidEmail && 
-            <div id="error-username-not-exist">
-              <p className="error text-center">This email does not exist!</p>
-            </div>
-          }
-        <input id="email" type="password" placeholder="password" value={this.state.loginPassword} name="loginPassword" onChange={this.handleInputChange} type="password" id="input-password"></input>
+        </section>
 
-          {!this.state.isValidPassword &&
-            <div id="error-password-incorrect">
-              <p className="error text-center">The password is incorrect!</p>
-            </div>
-          }
-          {this.state.isLoginPasswordEmpty &&
-            <div id="error-password-left-empty">
-              <p className="error text-center">Please enter your password!</p>
-            </div>
-          }
-        <input id="submit" type="submit" value="Sign In!" onClick={this.handleLoginFormSubmit}></input>
-      </form>
-        <div className="col-sm-offset-2 col-sm-5">
-          <hr></hr>
-          <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
-        </div>
-      */}
-      {/*sample 2*/}
 
       </div>
     );
