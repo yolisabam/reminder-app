@@ -2,10 +2,14 @@ import React from "react";
 import Hero from "../../Components/Hero";
 import "./About.css";
 import NavBar from "../../Components/NavBar";
+import Jumbotron from "../../Components/Jumbotron";
 
 const About = () =>
   <div>
   <NavBar />
+  <Jumbotron>
+  <h1>ABOUT US</h1>
+  </Jumbotron>
    <div className="container">
      <div className="row">
       <div className="col-md-3">
@@ -34,8 +38,7 @@ const About = () =>
       </div>
 
      </div>
-   </div>  
-   {/*end test about*/}    
+   </div>     
  </div>  
     
 
