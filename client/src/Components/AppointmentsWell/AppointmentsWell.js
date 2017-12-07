@@ -3,11 +3,6 @@ import Modal from 'react-modal';
 import API from "../../Utils/api";
 import ApptForm from "../ApptForm";
 import Appointment from "../Appointment";
-<<<<<<< HEAD
-import MapRender from "../../Components/Map";
-=======
-import "./AppointmentsWell.css";
->>>>>>> master
 
 class AppointmentsWell extends Component {
   state = {
