@@ -190,6 +190,7 @@ class LoginForm extends Component {
       <div>
         {/* Sign Up Form */}
         <Modal 
+          id="modal"
           className="col-sm-6 col-sm-offset-3 animated pulse"
           isOpen={this.state.modalIsOpen}>
           {/*<div className="modal-content">
@@ -314,7 +315,7 @@ class LoginForm extends Component {
 
       <form id="form" className="topBefore animated headShake">
         <div className="modal-header">
-          <button type="button" className="close" onClick={this.closeModal}>close</button>
+          <button type="button" className="close" onClick={this.closeModal}>&times;</button>
           <h4 id="SignUpForm" className="modal-title">Sign Up Form</h4>
         </div>
         <input id="name" type="text" placeholder="firstname" value={this.state.signUpFirstName} name="signUpFirstName" onChange={this.handleInputChange}  className="loginHover"></input>

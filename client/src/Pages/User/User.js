@@ -4,9 +4,10 @@ import "./User.css";
 import NavBar from "../../Components/NavBar";
 import ApptForm from "../../Components/ApptForm";
 import SimpleForm from "../../Components/Map"
-import AppointmentsWell from "../../Components/AppointmentsWell"
+import AppointmentsWell from "../../Components/AppointmentsWell";
 import Cookies2 from "js-cookie";
-import MapRender from "../../Components/Map"
+import MapRender from "../../Components/Map";
+import LinkGoogleMaps from "../../Components/LinkGoogleMaps";
 
 class User extends Component {
 
@@ -18,7 +19,9 @@ class User extends Component {
         <NavBar />
         <div>
           <Hero backgroundImage="/assets/background.jpg">
+
               <ApptForm user={user} />
+              <LinkGoogleMaps />
               {/*<SimpleForm />*/}
               <MapRender />
           </Hero>

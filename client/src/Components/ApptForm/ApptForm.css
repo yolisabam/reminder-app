@@ -27,15 +27,15 @@
 .box{
   position: relative;
   /*margin: auto;*/
-  height: 570px;
+  height: 550px;
   top: 40px;
   left: 0;
   z-index: 200;
   right: 0;
   width:400px;
-  color:#666;
+  color:#253042;
   border-radius: 3px;
-  background: #FFF;
+  background: #fcfdfd;
   margin-bottom: 100px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   overflow: hidden;
@@ -47,7 +47,7 @@
   padding-bottom: 50px;
     font-size:25px;
   font-weight: 300;
-  color: #2D3A4E;
+  color: #253042;
 }
 
 .box button{

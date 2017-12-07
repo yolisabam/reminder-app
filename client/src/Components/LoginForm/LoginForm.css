@@ -40,9 +40,10 @@ input:hover:focus::-ms-placeholder, textarea:hover::focus:-ms-placeholder {
 
 body {
   font-family: 'Lato', sans-serif;
-  background: #e2dedb;
-  color: #b3aca7;
+  background: #bec8d9;
+  color: #253042;
 }
+
 
 header {
   position: relative;
@@ -50,6 +51,10 @@ header {
   font-size: 2.3em;
   text-align: center;
   letter-spacing: 7px;
+}
+
+header:hover {
+  font-style: none;
 }
 
 #form {
@@ -83,7 +88,9 @@ header {
   color: #e2dedb;
 }
 
-
+.modal-header {
+      width: 470px;
+}
 
 
 #submit {
