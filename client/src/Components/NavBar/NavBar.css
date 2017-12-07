@@ -2,6 +2,9 @@
   background: #2D3A4E;
 }
 .navbar-title {
-  color: white !important; 
+  color: white !important;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300; 
 }
 
