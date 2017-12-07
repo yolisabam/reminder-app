@@ -65,15 +65,12 @@ const About = () =>
         <a href="http://yolisa-bam.com/"><img className="img-circle" img width="200px" height="200px" src="/assets/yolisa.jpg" alt="Cinque Terre"></img></a>
       </div>
       <div className="col-md-3">
+        <a href="http://winfredsunga.com"><img className="img-circle" img width="200px" height="200px" src="/assets/WinfredSungaPic.jpg" alt="Cinque Terre"></img></a>
         <div className="caption">
           <p>Winfred</p>
         </div>
-        <a href="http://winfredsunga.com"><img className="img-circle" img width="200px" height="200px" src="/assets/WinfredSungaPic.jpg" alt="Cinque Terre"></img></a>
       </div>
       <div className="col-md-3">
-        <div className="caption">
-          <p>James</p>
-        </div>
         <a href="http://jamesreantillo.com/portfolio/"><img className="img-circle" img width="200px" height="200px" src="/assets/James.JPG" alt="Cinque Terre"></img></a>
         <div className="caption">
           <p>James</p>
