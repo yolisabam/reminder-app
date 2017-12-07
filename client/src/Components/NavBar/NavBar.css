@@ -1,5 +1,7 @@
 .navbar {
   background: #2D3A4E;
+  margin-bottom: 0px;
+
 }
 .navbar-title {
   color: white !important; 

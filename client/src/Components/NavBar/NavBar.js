@@ -15,9 +15,9 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div class="wrapper">
+     
         <nav className="navbar navbar-default">
-          <div className="container-fluid">
+          
   
             <ul className="nav navbar-nav">
               <li className={window.location.pathname === "/user" ? "active" : ""}>
@@ -30,9 +30,9 @@ class NavBar extends Component {
                 <Link className="navbar-title animated headShake" to="/" onClick={this.handleSignOut}>Sign Out</Link>
               </li>
             </ul>
-          </div>
+          
         </nav>
-      </div>
+    
     );
   }
 }
