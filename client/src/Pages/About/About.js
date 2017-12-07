@@ -9,9 +9,11 @@ const About = () =>
   <NavBar />
   <Jumbotron>
   <h1>ABOUT US</h1>
+  <h6>WE BUILT REMIND.ME TO HELP BUSY PEOPLE SEND TEXT REMINDERS FOR THINGS THAT MATTER</h6>
   </Jumbotron>
-   <div className="container">
+   <div className="container">   
      <div className="row">
+      <h2>Our Team</h2>
       <div className="col-md-3">
         <a href="http://yolisa-bam.com/"><img className="img-circle" img width="200px" height="200px" src="/assets/yolisa.jpg" alt="Cinque Terre"></img></a>
         <div className="caption">
