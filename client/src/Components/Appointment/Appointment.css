@@ -1,9 +1,19 @@
 .panel-body-upcoming-appts {
+<<<<<<< HEAD
   /*border : 1px solid gray;*/
+=======
+ 
+>>>>>>> master
   /*border-left : 1px solid gray;
   border-right : 1px solid gray;*/
   padding : 0px 0px 10px 10px;
   margin-top : 5px;
+<<<<<<< HEAD
   border-radius: 25px;
   background-color: white;
+=======
+  border-radius: 10px;
+  background: #fcfdfd;
+
+>>>>>>> master
 }

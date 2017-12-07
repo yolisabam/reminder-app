@@ -1,8 +1,10 @@
 #map {
   height: 400px;
   width: 600px;
-  top: -630px;
-  left: 150px;
+  top: -660px;
+  left: 10px;
+  position: relative;
+  display: inline-block;
 }
 
 #map {
