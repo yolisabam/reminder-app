@@ -188,7 +188,6 @@ class LoginForm extends Component {
     console.log('state before render', this.state);
     return (
       <div>
-        {/* Sign Up Form */}
         <Modal 
           id="modal"
           className="col-sm-6 col-sm-offset-3 animated pulse"
@@ -241,10 +240,8 @@ class LoginForm extends Component {
             <input id="submit" type="submit" value="Submit!" className="loginHover" onClick={this.handleSignupFormSubmit}></input>
           </form>
         </Modal>
-
-      {/*sample 2*/}
-      <section className="loginSection">
-        <header className="animated headShake">Log In</header>
+        <section className="loginSection">
+          <header className="animated headShake">Log In</header>
           <form id="form" className="topBefore animated headShake"> 
             <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
               {this.state.isLoginEmailEmpty &&
@@ -271,7 +268,6 @@ class LoginForm extends Component {
                 <p className="error text-center">Sorry! Your email or password is incorrect</p>
               </div>
             }
-
           </form>
           <div className="col-sm-offset-2 col-sm-5">
             <hr></hr>
