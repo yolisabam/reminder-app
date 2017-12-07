@@ -7,6 +7,7 @@ import SimpleForm from "../../Components/Map"
 import AppointmentsWell from "../../Components/AppointmentsWell";
 import Cookies2 from "js-cookie";
 import MapRender from "../../Components/Map";
+import LinkGoogleMaps from "../../Components/LinkGoogleMaps"
 
 class User extends Component {
 
@@ -18,9 +19,10 @@ class User extends Component {
         <NavBar />
         <Hero backgroundImage="/assets/background.jpg">
           <ApptForm user={user} />
-          {/*<SimpleForm />*/}
+          <LinkGoogleMaps />
           <MapRender />
         </Hero>
+
         <div>
           <AppointmentsWell user={user}/>
         </div>  
