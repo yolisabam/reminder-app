@@ -77,8 +77,10 @@ class MapRender extends Component {
   render() {
     return (
       <div id='app'>
-        <div id='map' />
-         <input id="pac-input" className="controls" type="text" placeholder="Search Box" />
+        <div id='map'>
+         <input id="pac-input" className="controls" type="text" placeholder="Search Box">
+         </input>
+        </div>
       </div>
     );
   }
