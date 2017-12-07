@@ -155,6 +155,36 @@ label                {
   animation:inputHighlighter 0.3s ease;
 }
 
+/*input {
+  background-color: black;
+}
+*/
+
+/*#PlacesAutocomplete_root{
+   margin-left : 0px;
+  padding-left : 0px;
+}*/
+
+.address-form-control {
+  /*background-color: black;*/
+  width : 85%;
+  margin-left : 0px;
+  padding-left : 0px;
+  margin-right : 50px;
+  content : "address";
+}
+
+.my-autocomplete-container {
+  margin-left : 0px;
+  padding-left : 0px;
+}
+
+.form-group {
+  margin-left : 0px;
+  padding-left : 0px;
+}
+
+
 /* ANIMATIONS ================ */
 @-webkit-keyframes inputHighlighter {
     from { background:#5264AE; }

@@ -28,6 +28,12 @@ const appointmentSchema = new mongoose.Schema({
   notificationLabel: {
     type: String,
     required: true
+  },
+  coordinates : {
+    type : Object
+  },
+  address : {
+    type : String
   }
 }); 
 

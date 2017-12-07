@@ -6,24 +6,24 @@ import ApptForm from "../../Components/ApptForm";
 import SimpleForm from "../../Components/Map"
 import AppointmentsWell from "../../Components/AppointmentsWell"
 import Cookies2 from "js-cookie";
-import MapRender from "../../Components/Map"
+import MapRender from "../../Components/Map";
 
 class User extends Component {
 
   render() {
     const user = Cookies2.getJSON('user');
-    //console.log(user);
+    console.log(this.state);
     return (
       <div class="wrapper">
         <NavBar />
+        <Hero backgroundImage="/assets/background.jpg">
+          <ApptForm user={user} />
+          {/*<SimpleForm />*/}
+          <MapRender />
+        </Hero>
         <div>
-          <Hero backgroundImage="/assets/background.jpg">
-              <ApptForm user={user} />
-              {/*<SimpleForm />*/}
-              <MapRender />
-          </Hero>
-        </div>
-        <AppointmentsWell user={user}/>
+          <AppointmentsWell user={user}/>
+        </div>  
         <br></br>
         <br></br>
     </div>

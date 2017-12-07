@@ -1,8 +1,9 @@
 .panel-body-upcoming-appts {
-  border : 1px solid gray;
+  /*border : 1px solid gray;*/
   /*border-left : 1px solid gray;
   border-right : 1px solid gray;*/
   padding : 0px 0px 10px 10px;
   margin-top : 5px;
-
+  border-radius: 25px;
+  background-color: white;
 }
