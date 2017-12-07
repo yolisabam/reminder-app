@@ -19,6 +19,10 @@
   font-family: "Roboto";
 }*/
 
+#logintoregister {
+  margin-top: 30px;
+}
+
 /* BOX LOGIN */
 .box{
   position: relative;
@@ -40,7 +44,7 @@
 
 .box h1{
   /*margin-left: 40px;*/
-  padding-bottom: 30px;
+  padding-bottom: 50px;
     font-size:25px;
   font-weight: 300;
   color: #2D3A4E;
