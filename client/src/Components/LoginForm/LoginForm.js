@@ -190,13 +190,14 @@ class LoginForm extends Component {
       <div>
         {/* Sign Up Form */}
         <Modal 
+          id="modal"
           className="col-sm-6 col-sm-offset-3 animated pulse"
           isOpen={this.state.modalIsOpen}>
           
 
       <form id="form" className="topBefore animated headShake">
         <div className="modal-header">
-          <button type="button" className="close" onClick={this.closeModal}>close</button>
+          <button type="button" className="close" onClick={this.closeModal}>&times;</button>
           <h4 id="SignUpForm" className="modal-title">Sign Up Form</h4>
         </div>
         <input id="name" type="text" placeholder="firstname" value={this.state.signUpFirstName} name="signUpFirstName" onChange={this.handleInputChange}  className="loginHover"></input>
@@ -245,7 +246,13 @@ class LoginForm extends Component {
         </Modal>
 
 
-        
+
+      
+
+
+      {/*sample 2*/}
+      <section className="loginSection">
+
       <header className="animated headShake">Log In</header>
         <form id="form" className="topBefore animated headShake"> 
           <input id="name" type="email" placeholder="email" value={this.state.loginEmail} name="loginEmail" onChange={this.handleInputChange} type="text" id="input-email" className="loginHover"></input>
@@ -267,16 +274,22 @@ class LoginForm extends Component {
               </div>
             }  
           <input id="submit" type="submit" value="Sign In!" className="loginHover" onClick={this.handleLoginFormSubmit}></input>
+
           {!this.state.isValidEmail &&
             <div id="error-username-not-exist">
               <p className="error text-center">Sorry! Your email or password is incorrect</p>
             </div>
           }
+
         </form>
         <div className="col-sm-offset-2 col-sm-5">
           <hr></hr>
           <p id="need-acct" className="animated bounceInLeft">Need an account?<span><a id="sign-up" onClick={this.openModal}>&nbsp;&nbsp;&nbsp;SIGN UP</a></span></p>
         </div>
+
+        </section>
+
+
       </div>
     );
   }

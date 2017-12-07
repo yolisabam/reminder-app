@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import API from "../../Utils/api";
 import ApptForm from "../ApptForm";
 import Appointment from "../Appointment";
+import "./AppointmentsWell.css";
 
 class AppointmentsWell extends Component {
   state = {
