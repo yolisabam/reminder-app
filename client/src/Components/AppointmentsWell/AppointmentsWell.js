@@ -3,7 +3,6 @@ import Modal from 'react-modal';
 import API from "../../Utils/api";
 import ApptForm from "../ApptForm";
 import Appointment from "../Appointment";
-import "./AppointmentsWell.css";
 
 class AppointmentsWell extends Component {
   state = {
@@ -16,6 +15,10 @@ class AppointmentsWell extends Component {
     apptNotificationLabel: '',
     appointments: [],
     isModalOpen: false,
+    isMapModalOpen : false,
+    lat: '',
+    lng: '',
+    address : ''
   }
 
   componentWillMount() {
@@ -42,6 +45,16 @@ class AppointmentsWell extends Component {
       apptNotificationLabel: appt.apptNotificationLabel,
       isModalOpen: true
     });
+  }
+
+  handleRenderMap = (appt) => {
+    this.setState({
+      //coordinates : appt.coordinates,
+      lat : appt.coordinates.lat,
+      lng : appt.coordinates.lng,
+      address : appt.address,
+      isMapModalOpen : true
+    })
   }
 
   onUpdateAppointment = () => {
@@ -84,21 +97,23 @@ class AppointmentsWell extends Component {
       apptNotificationLabel } = this.state;
     const upcomingAppts = this.getUpcomingAppointments();
     const pastAppts = this.getPastAppointments();
+    console.log(this.state);
     return (
       <div>
-
        {/*test well*/}
-
-       <div className="container">
-         
+        <div className="container">   
           <h4 className="animated headShake">Upcoming Appointments</h4>
           <div className="well" id="upcoming-well">
             {upcomingAppts.map(appt => 
-              <Appointment
-                appt={appt}
-                key={appt._id}
-                handleUpdate={this.handleUpdate}
-                handleDelete={this.handleDelete} />
+              <div>
+                <Appointment
+                  appt={appt}
+                  key={appt._id}
+                  handleUpdate={this.handleUpdate}
+                  handleDelete={this.handleDelete} 
+                  handleRenderMap={this.handleRenderMap}
+                  />
+              </div>
             )}
           </div>
           <h4 className="animated headShake">Past Appointments</h4>
@@ -119,9 +134,8 @@ class AppointmentsWell extends Component {
               apptNotification={apptNotification}
               apptNotificationNumber={apptNotificationNumber}
               handleSubmit={this.onUpdateAppointment} />
-          </Modal>
-             
-       </div>
+          </Modal>         
+        </div>
 
 
 

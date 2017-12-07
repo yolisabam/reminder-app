@@ -10,12 +10,18 @@ class MapRender extends Component {
       place_formatted: '',
       place_id: '',
       place_location: '',
-    };
+      lat: 37.7749,
+      lng: -122.431297
+    }; 
   }
 
   componentDidMount() {
     let map = new window.google.maps.Map(document.getElementById('map'), {
-      center: {lat: 37.7749, lng: -122.431297},
+      center: {
+        lat : this.state.lat, 
+        lng : this.state.lng
+      },
+      //center: {lat: 37.7749, lng: -122.431297},
       zoom: 10,
       mapTypeId: 'roadmap',
     });
@@ -34,9 +40,12 @@ class MapRender extends Component {
 
     let marker = new window.google.maps.Marker({
       map: map,
-      position: {lat: 37.7749, lng: -122.431297},
+      //position: {lat: 37.7749, lng: -122.431297},
+      position: {
+        lat : this.state.lat, 
+        lng : this.state.lng
+      }
     });
-
 
     // initialize the autocomplete functionality using the #pac-input input box
     let inputNode = document.getElementById('pac-input');
@@ -76,41 +85,3 @@ class MapRender extends Component {
 };
 
 export default MapRender;
-
-// import React, { Component } from 'react'
-// import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-
-// class SimpleForm extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = { address: 'San Francisco, CA' }
-//     this.onChange = (address) => this.setState({ address })
-//   }
-
-//   handleFormSubmit = (event) => {
-//     event.preventDefault()
-
-//     geocodeByAddress(this.state.address)
-//       .then(results => getLatLng(results[0]))
-//       .then(latLng => console.log('Success', latLng))
-//       .catch(error => console.error('Error', error))
-//   }
-
-//   render() {
-//     const inputProps = {
-//       value: this.state.address,
-//       onChange: this.onChange,
-//     }
-
-//     return (
-//       <div className="col-md-6 float-right">
-//         <form onSubmit={this.handleFormSubmit}>
-//           <PlacesAutocomplete inputProps={inputProps} />
-//           <button type="submit">Submit</button>
-//         </form>
-//       </div>
-//     )
-//   }
-// }
-
-// export default SimpleForm;
