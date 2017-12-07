@@ -13,7 +13,6 @@ import 'react-select/dist/react-select.css';
 //require this package for auto completion of address input
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
-
 class ApptForm extends Component {
   state = {
     apptName : "",
@@ -233,7 +232,7 @@ class ApptForm extends Component {
               <span className="bar"></span>
               {/*<label className="animated bounceInLeft">address</label>*/}
             </div>
-            <div className="group">      
+            <div className="group">     
               <DatePicker
                 className="inputMaterial"
                 id="appt-date"
