@@ -1,6 +1,7 @@
 .hero {
   /*position: relative;*/
   /*padding-top: 10px;*/
+  height: 90vh;
   /*background: url("../../../public/backgroundImage.jpg");*/
   background-size: cover;
 }
