@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 //declare dependencies
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -20,6 +21,11 @@ app.use(express.static("client/build"));
 
 //add the routes to be used by our app
 app.use(routes);
+
+//let react-router handles the route on client side
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
+});
 
 //set up promises with Mongoose
 mongoose.Promise = global.Promise = global.Promise;
