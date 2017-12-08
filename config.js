@@ -1,12 +1,14 @@
+ const config = {};
+
 if (process.env.PORT ) {
-  const config = {};
+  //const config = {};
   config.twilioAccountSid = process.env.twilioAccountSid;
   config.twilioAuthToken = process.env.twilioAuthToken;
   config.twilioPhoneNumber = process.env.twilioPhoneNumber;
 } else {
   
   const twillioKeys = require("./keys.js");
-  const config = {};
+  //const config = {};
 
   config.twilioAccountSid = twillioKeys.twilioAccountSid;
   config.twilioAuthToken = twillioKeys.twilioAuthToken;
