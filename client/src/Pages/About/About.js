@@ -18,7 +18,7 @@ const About = () =>
       <div className="col-md-3">
         <a href="http://yolisa-bam.com/"><img className="img-circle" img width="200px" height="200px" src="/assets/yolisa.jpg" alt="Cinque Terre"></img></a>
         <div className="caption">
-          <p>Yolisa</p>
+          <p>Yolisa Bam</p>
           <a href="http://github.com/yolisabam"><img  src="/assets/github.png" alt="github"></img></a>
 
         </div>
@@ -26,21 +26,21 @@ const About = () =>
       <div className="col-md-3">
         <a href="http://winfredsunga.com"><img className="img-circle" img width="200px" height="200px" src="/assets/WinfredSungaPic.jpg" alt="Cinque Terre"></img></a>
         <div className="caption">
-          <p>Winfred</p>
+          <p>Winfred Sunga</p>
           <a href="https://github.com/winfredSunga-jw0226"><img  src="/assets/github.png" alt="github"></img></a>
         </div>
       </div>
       <div className="col-md-3">
         <a href="http://jamesreantillo.com/portfolio/"><img className="img-circle" img width="200px" height="200px" src="/assets/James.JPG" alt="Cinque Terre"></img></a>
         <div className="caption">
-          <p>James</p>
+          <p>James Reantillo</p>
           <a href="http://github.com/jamesreantillo"><img  src="/assets/github.png" alt="github"></img></a>
         </div>
       </div>
       <div className="col-md-3">
         <a href="https://fathao.github.io/Alex-Z/"><img className="img-circle" img width="200px" height="200px" src="/assets/Alex.jpg" alt="Cinque Terre"></img></a>
          <div className="caption">
-          <p>Alex</p>
+          <p>Alex Zhen</p>
            <a href="https://github.com/fathao"><img  src="/assets/github.png" alt="github"></img></a>
         </div>
       </div>
