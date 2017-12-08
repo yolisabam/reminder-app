@@ -57,9 +57,14 @@ typings/
 # dotenv environment variables file
 .env
 
+# ignore npm stuff since we're using yarn
 package-lock.json
+
+# Mac OS
 .DS_Store
 
 #twillio keys
 keys.js
 
+# build
+client/build
