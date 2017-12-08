@@ -66,11 +66,11 @@ appointmentSchema.statics.sendNotifications = function(cb) {
     function sendNotifications(appointments) {
 
 
-      const client = new Twilio(process.env.twilioAccountSid || config.twilioAccountSid, process.env.twilioAuthToken || config.twilioAuthToken);
+      const client = new Twilio(config.twilioAccountSid, config.twilioAuthToken);
       appointments.forEach(function(appointment) {
         const message = {
           to: `+1${appointment.appointmentNumber}`,
-          from: process.env.twilioPhoneNumber || config.twilioPhoneNumber,
+          from: config.twilioPhoneNumber,
           body: `Hi! Just a quick reminder that ${appointment.appointmentName} is coming up in ${appointment.notificationLabel}!`,
         };
 
