@@ -27,7 +27,7 @@ const About = () =>
         <a href="http://winfredsunga.com"><img className="img-circle" img width="200px" height="200px" src="/assets/WinfredSungaPic.jpg" alt="Cinque Terre"></img></a>
         <div className="caption">
           <p>Winfred</p>
-          <a href="http://github.com/jamesreantillo"><img  src="/assets/github.png" alt="github"></img></a>
+          <a href="https://github.com/winfredSunga-jw0226"><img  src="/assets/github.png" alt="github"></img></a>
         </div>
       </div>
       <div className="col-md-3">
@@ -41,6 +41,7 @@ const About = () =>
         <a href="https://fathao.github.io/Alex-Z/"><img className="img-circle" img width="200px" height="200px" src="/assets/Alex.jpg" alt="Cinque Terre"></img></a>
          <div className="caption">
           <p>Alex</p>
+           <a href="https://github.com/fathao"><img  src="/assets/github.png" alt="github"></img></a>
         </div>
       </div>
 
