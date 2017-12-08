@@ -1,18 +1,15 @@
 h1 {
-  color: red;
+  text-align: center;
 }
 
-.hero {
-  position: relative;
-  padding-top: 10px;
-  height: 100vh;
-  background: linear-gradient(#3F516E, transparent 90%), linear-gradient(0deg, #000, transparent), #000 no-repeat center fixed;
-  background-size: cover;
-  margin-bottom: 30px;
+h6 {
+  text-align: center;
 }
-/* 
-a.size {
-  height: 100px;
-  width: 100px;
-  
-} */
+
+h2 {
+  text-align: center;
+}
+
+img {
+  text-align: center;
+}
