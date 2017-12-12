@@ -42,6 +42,7 @@ appointmentSchema.methods.requiresNotification = function(date) {
                           .diff(moment(date).utc())
                           ).asMinutes()) === this.notification;
 };
+
 appointmentSchema.statics.sendNotifications = function(cb) {
   const searchDate = new Date();
   console.log('searchDate : ' + searchDate);
