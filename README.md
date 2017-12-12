@@ -56,8 +56,8 @@ We wanted to make an app that will give people more visibility into their hectic
 
 ### Project Contributors
 * Yolisa Bam - [yolisabam] (https://github.com/yolisabam)
-* Winfred Sunga - [winfredSunga-jw0226](https://github.com/winfredSunga-jw0226)
-* James Reantillo
-* Alex Zhen - [fathao] https://github.com/fathao
+* Winfred Sunga - [winfredSunga-jw0226] (https://github.com/winfredSunga-jw0226)
+* James Reantillo - [jamesreantillo] (https://github.com/jamesreantillo)
+* Alex Zhen - [fathao] (https://github.com/fathao)
 
 
