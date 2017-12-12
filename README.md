@@ -11,6 +11,10 @@ Text messages have a 98% open rate, while email has only a 20% open rate. We are
 
 We wanted to make an app that will give people more visibility into their hectic schedules. Sending a text reminder days/hours/minutes before the start of the appointment will make a difference and eliminate the risk of missed appointments or having to rush to an appointment that was overlooked.
 
+### Requirements
+
+1. Twilio verified phone number
+
 ### Instructions
 
 ### Demo
@@ -21,6 +25,7 @@ We wanted to make an app that will give people more visibility into their hectic
 ### Front End Tech
 * HTML5
 * CSS3
+* Animate CSS
 * ReactJS
 * Bootstrap
 * Javascript ES6
@@ -36,7 +41,7 @@ We wanted to make an app that will give people more visibility into their hectic
 ### Back End Tech
 * Node.js
 * Express.js, Express Router, Middlewares
-* MongoDB
+* MongoDB, Mongoose
 * Node Rest Client
 * NPM Packages
   * [bcrypt](https://www.npmjs.com/package/bcrypt)
