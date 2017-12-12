@@ -17,6 +17,12 @@ We wanted to make an app that will give people more visibility into their hectic
 
 ### Instructions
 
+- When you arrive to the homepage, you will make an account or sign in.
+- On the left hand side you will see a form to create appointments 
+- Fill out the form with all relevant information the save the reminder. 
+- All reminders populate below the form in our upcoming or past appointments section
+- You can update or delete reminders 
+
 ### Demo
 
 ### Live Link 
@@ -60,33 +66,3 @@ We wanted to make an app that will give people more visibility into their hectic
 * James Reantillo - [jamesreantillo] (https://github.com/jamesreantillo)
 * Alex Zhen - [fathao] (https://github.com/fathao)
 
-
-## Description on How to use the app
-
-- When you arrive to the homepage, you will make an account or sign in.
-- On thr left hand side you will see a form to create appointments 
-- Fill out the form with all relevant information the save the reminder. 
-- All reminders populate below the form in our upcoming or past appointments section
-- You can update or delete reminders 
-
-## Requirements
-
-1. Twilio verified phone number
-
-
-
-
-## Technologies Used
-
-- ReactJS
-- CSS
-- Bootstrap
-- MongoDB
-- Express (for routing)
-- Animate CSS
-- Twilio API
-- Google Maps API
-- MomentJS
-- Mongoose
-- NPM
-- NodeJS
