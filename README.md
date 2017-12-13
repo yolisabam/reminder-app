@@ -26,7 +26,7 @@ We wanted to make an app that will give people more visibility into their hectic
 ### Demo
 
 ### Live Link 
-[remind.me app] https://remind-me-2017.herokuapp.com/
+[remind.me app](https://remind-me-2017.herokuapp.com/)
 
 ### Front End Tech
 * HTML5
@@ -36,12 +36,12 @@ We wanted to make an app that will give people more visibility into their hectic
 * Bootstrap
 * Javascript ES6
 * NPM Packages
-  * axios (https://www.npmjs.com/package/axios)
-  * google-maps-react (https://www.npmjs.com/package/google-maps-react)
-  * js-cookie (https://www.npmjs.com/package/js-cookie)
-  * react-datetime (https://www.npmjs.com/package/react-datetime)
-  * react-modal (https://www.npmjs.com/package/react-modal)
-  * react-places-autocomplete (https://www.npmjs.com/package/react-places-autocomplete)
+  * [axios](https://www.npmjs.com/package/axios)
+  * [google-maps-react](https://www.npmjs.com/package/google-maps-react)
+  * [js-cookie](https://www.npmjs.com/package/js-cookie)
+  * [react-datetime](https://www.npmjs.com/package/react-datetime)
+  * [react-modal](https://www.npmjs.com/package/react-modal)
+  * [react-places-autocomplete](https://www.npmjs.com/package/react-places-autocomplete)
   
 
 ### Back End Tech
@@ -51,18 +51,18 @@ We wanted to make an app that will give people more visibility into their hectic
 * Node Rest Client
 * NPM Packages
   * [bcrypt](https://www.npmjs.com/package/bcrypt)
-  * [cron] (https://www.npmjs.com/package/cron)
-  * [js-cookie] (https://www.npmjs.com/package/js-cookie)
-  * [moment] (https://www.npmjs.com/package/moment)
-  * [moment-timezone] (https://www.npmjs.com/package/moment-timezone)
+  * [cron](https://www.npmjs.com/package/cron)
+  * [js-cookie](https://www.npmjs.com/package/js-cookie)
+  * [moment](https://www.npmjs.com/package/moment)
+  * [moment-timezone](https://www.npmjs.com/package/moment-timezone)
 
 ### APIs Used
 * [Google Places, Google Maps, Google Visualization Library](https://developers.google.com/maps/)
 * Twilio (https://www.twilio.com/docs/tutorials/appointment-reminders-node-express#create-a-new-appointment)
 
 ### Project Contributors
-* Yolisa Bam - [yolisabam] (https://github.com/yolisabam)
-* Winfred Sunga - [winfredSunga-jw0226] (https://github.com/winfredSunga-jw0226)
-* James Reantillo - [jamesreantillo] (https://github.com/jamesreantillo)
-* Alex Zhen - [fathao] (https://github.com/fathao)
+* Yolisa Bam - [yolisabam](https://github.com/yolisabam)
+* Winfred Sunga - [winfredSunga-jw0226](https://github.com/winfredSunga-jw0226)
+* James Reantillo - [jamesreantillo](https://github.com/jamesreantillo)
+* Alex Zhen - [fathao](https://github.com/fathao)
 
